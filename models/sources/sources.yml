@@ -1,0 +1,7 @@
+sources:
+  - name: shopify
+    database: trans-radius-363407
+    schema: staging_fivetran_shopify
+    tables:
+      - name: order
+      - name: customer
