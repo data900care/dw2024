@@ -1,3 +1,4 @@
+
 select *
 from {{ ref('stg_shopify__orders') }} so
 left join  {{ ref('stg_recharge__orders') }} ro
