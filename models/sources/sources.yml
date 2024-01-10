@@ -1,7 +1,47 @@
+version: 2
 sources:
   - name: shopify
     database: trans-radius-363407
+
+    freshness: # default freshness
+      warn_after: {count: 12, period: hour}
+      error_after: {count: 24, period: hour}
+    loaded_at_field: updated_at
+
     schema: staging_fivetran_shopify
     tables:
       - name: order
       - name: customer
+      - name: order_discount_code
+      - name: order_tag
+      - name: order_note_attribute
+
+
+      
+  - name: recharge
+    database: trans-radius-363407
+
+    freshness: # default freshness
+      warn_after: {count: 12, period: hour}
+      error_after: {count: 24, period: hour}
+    loaded_at_field: updated_at
+
+    schema: staging_fivetran_recharge
+    tables:
+      - name: order
+      - name: customer
+      - name: subscription
+    
+  - name: BIContent900
+    database: trans-radius-363407
+
+    freshness: # default freshness
+      warn_after: {count: 24, period: hour}
+      error_after: {count: 48, period: hour}
+    loaded_at_field: _airbyte_extracted_at
+
+    schema: staging_airbyte_cloud
+    tables:
+      - name: content900_invalidOrder_customerIds
+      - name: content900_invalidOrder_orderNames
+      - name: content900_invalidOrder_testDiscountCodes
