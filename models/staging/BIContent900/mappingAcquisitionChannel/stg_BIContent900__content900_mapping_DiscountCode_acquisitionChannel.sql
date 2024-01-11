@@ -9,8 +9,8 @@ source as (
 renamed as (
 
     select
-        code,
-        acquisitionchannel
+        code as discountCode,
+        acquisitionchannel as acquisitionChannel
 
     from source
 

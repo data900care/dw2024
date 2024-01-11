@@ -58,5 +58,5 @@ sources:
 
     schema: staging_airbyte_cloud
     tables:
-      - name: externalData_Grapevine_Survey_Data_csv
+      - name: externalData_Grapevine_Survey_Data
 

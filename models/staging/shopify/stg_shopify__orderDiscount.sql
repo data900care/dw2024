@@ -9,7 +9,7 @@ source as (
 renamed as (
 
     select order_id as shopify_orderId,
-    code as orderDiscountCode
+    code as DiscountCode
     
     from source
     where code is not null and code <> ''

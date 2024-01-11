@@ -11,7 +11,7 @@ renamed as (
     select
       
         howheard,
-        acquisitionchannel
+        acquisitionChannel as acquisitionChannel
 
     from source
 

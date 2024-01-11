@@ -13,9 +13,9 @@ select shopify_orderId, invalidLabel
 union all
 (
 select shopify_orderId ,invalidLabel
-    from {{ ref('stg_shopify__orderDiscountCodes') }} 
+    from {{ ref('stg_shopify__orderDiscount') }} od
     join {{ ref('stg_invalidOrder_testDiscountCodes') }} i
-    on orderDiscountcode = i.discountCode 
+    on od.discountcode = i.discountCode 
 )
 union all
 (
@@ -27,6 +27,6 @@ select shopify_orderId ,invalidLabel
 union all
 (
 select shopify_orderId ,'Initial order before upsell' as invalidLabel
-    from {{ ref('stg_shopify__order_tags') }} 
+    from {{ ref('stg_shopify__orderTags') }} 
     where lower(order_tag) in ('upsellcancel','upsellcncel','upsellcancell','upcellcancel','cancelupsell')
 )
