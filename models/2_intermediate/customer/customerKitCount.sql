@@ -3,5 +3,5 @@ SELECT
     kitType,
     count(*) as kitCount
   FROM
-   {{ ref('customer_kitTypes') }}
+   {{ ref('customerKitTypes') }}
 group by shopify_customerId, kitType

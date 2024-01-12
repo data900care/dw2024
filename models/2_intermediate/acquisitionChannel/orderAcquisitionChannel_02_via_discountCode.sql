@@ -1,5 +1,5 @@
 select distinct o.shopify_orderid, d.acquisitionchannel
-from {{ ref("unified_orders") }} o
+from {{ ref("stg_shopify__orders") }} o
 join
     {{ ref("stg_shopify__orderDiscount") }} od
     on od.shopify_orderid = o.shopify_orderid
@@ -12,5 +12,5 @@ join
 
 where
     o.shopify_orderid not in (
-        select shopify_orderid from {{ ref("order_acquisition_channel_01_via_grapevine") }}
+        select shopify_orderid from {{ ref("orderAcquisitionChannel_01_via_grapevine") }}
     )

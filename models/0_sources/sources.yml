@@ -15,6 +15,7 @@ sources:
       - name: order_discount_code
       - name: order_tag
       - name: order_note_attribute
+      - name: order_line
 
 
       
@@ -31,6 +32,8 @@ sources:
       - name: order
       - name: customer
       - name: subscription
+      - name : order_line_item
+
     
   - name: BIContent900
     database: trans-radius-363407

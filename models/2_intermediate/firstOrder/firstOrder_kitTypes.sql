@@ -3,5 +3,7 @@ SELECT
     kitType
   FROM
    {{ ref('stg_shopify__orderKitTypes') }} ok
-   join {{ ref('validOrders') }} o
+   join {{ ref('validShopifyOrders') }} o
    on o.shopify_orderId = ok.shopify_orderId
+   where
+    customerOrderRank = 1

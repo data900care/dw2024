@@ -9,7 +9,10 @@ source as (
 renamed as (
 
     select id as recharge_orderId,
-    cast(external_order_id_ecommerce as int) as external_order_id_ecommerce
+    cast(external_order_id_ecommerce as int) as external_order_id_ecommerce,
+    is_deleted as isDeleted,
+    scheduled_at as scheduledAt,
+    shipped_date as shippedAt
 
     from source
 )
