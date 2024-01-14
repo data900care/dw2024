@@ -11,10 +11,10 @@ renamed as (
     select
         id as shopify_orderId,
         billing_address_country,
-        cancel_reason,
-        cancelled_at,
+        cancel_reason as cancelReason,
+        cancelled_at as cancelledAt,
         confirmed,
-        created_at,
+        created_at as createdAt,
         currency,
         current_subtotal_price,
         current_subtotal_price_set,
@@ -43,8 +43,7 @@ renamed as (
         total_price_set,
         total_shipping_price_set,
         total_tax,
-        total_tax_set,
-        updated_at
+        total_tax_set
 
     from source
 

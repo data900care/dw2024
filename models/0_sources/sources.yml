@@ -31,6 +31,14 @@ sources:
     tables:
       - name: order
       - name: customer
+        columns:
+            - name: id
+              description: Primary key of the recharge customer table
+              tests:
+                - unique
+                - not_null
+            - name: external_customer_id_ecommerce
+              description:  key of the shopify customer table, sometimes Null Values, sometimes multiples Recharge customer ñaping to same shopify customer and sometimes recharge customer mapping to a non existing Shopify Customer.
       - name: subscription
       - name : order_line_item
 

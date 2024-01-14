@@ -1,7 +1,7 @@
 (
-select shopify_orderId, concat('Canceled: ' , cancel_reason) as invalidLabel
+select shopify_orderId, concat('Canceled: ' , cancelReason) as invalidLabel
 from {{ ref('stg_shopify__orders') }} 
-where cancelled_at is not null
+where cancelledAt is not null
 )
 union all
 (

@@ -8,9 +8,9 @@ source as (
 
 renamed as (
 
-    select id as recharge_customerId,
-        subscriptions_active_count,
-        cast(external_customer_id_ecommerce as int) as external_customer_id_ecommerce
+    select id as recharge_customerid,
+        subscriptions_active_count as subscriptionsActiveCount ,
+        cast(external_customer_id_ecommerce as int) as shopify_customerId
 
     from source
 
