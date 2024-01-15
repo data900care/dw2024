@@ -1,5 +1,5 @@
 SELECT
-    distinct shopify_customerId,
+    shopify_customerId,
     kitType
   FROM
    {{ ref('stg_shopify__orderKitTypes') }} ok
