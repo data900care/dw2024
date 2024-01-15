@@ -1,17 +1,13 @@
 select
-    c.*,
-    ck.kitcount,
+    sc.shopify_customerid,
+    ck.kitCount,
     fo.firstorder_acquisitionChannel,
     fo.firstorder_discountCode,
     fo.firstorder_shippingCountry,
-    cs.firstSubscriptionDate,
-    cs.lastSubscriptionCancelledAt
-from {{ ref("stg_shopify__customers") }} c
-left join
-    {{ ref("customerKitCount") }} ck on c.shopify_customerId = ck.shopify_customerId
-left join
-    {{ ref("firstOrder") }} fo
-    on c.shopify_customerId = fo.shopify_customerId
-left join 
-{{ ref('customerSubscriptionSummary') }} cs 
- on cs.shopify_customerId = c.shopify_customerId
+    ss.firstSubscriptionDate,
+    ss.lastSubscriptionCancelledAt,
+    ss.subscriptionsActiveCount
+from {{ ref("stg_shopify__customers") }} sc
+left join {{ ref("customerKitCount") }} ck using (shopify_customerid)
+left join {{ ref("firstOrder") }} fo using (shopify_customerid)
+left join {{ ref("customerSubscriptionSummary") }} ss using (shopify_customerid)
