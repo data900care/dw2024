@@ -15,7 +15,14 @@ union all
 select shopify_orderId ,invalidLabel
     from {{ ref('stg_shopify__orderDiscount') }} od
     join {{ ref('stg_invalidOrder_testDiscountCodes') }} i
-    on od.discountcode = i.discountCode 
+    on od.discountcode = i.discountCode and matchType = 'equal'
+)
+union all
+(
+select shopify_orderId ,invalidLabel
+    from {{ ref('stg_shopify__orderDiscount') }} od
+    join {{ ref('stg_invalidOrder_testDiscountCodes') }} i
+    on od.discountcode like concat(i.discountCode,'%') and matchType = 'starts'
 )
 union all
 (
