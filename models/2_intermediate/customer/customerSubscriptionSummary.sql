@@ -9,12 +9,8 @@ with
     dateSummary as (
         select
             c.shopify_customerid,
-            cast(
-                datetime(min(s.createdat), "Europe/Paris") as date
-            ) as firstSubscriptionDate,
-            cast(
-                datetime(max(s.cancelledat), "Europe/Paris") as date
-            ) as lastSubscriptionCancelledAt
+            min(s.createdat) as firstSubscriptionDate,
+            max(s.cancelledat) as lastSubscriptionCancelledAt
         from {{ ref("ShopifyRechargeCustomers") }} c
         join {{ ref("stg_recharge__subscription") }} s using (recharge_customerId)
         where shopify_customerId is not null
