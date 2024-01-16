@@ -17,7 +17,7 @@ renamed as (
         cast(kit_home as bool) as kitHome,
         cast(kit_kids as bool) as KitKids,
         cast(kit_solid as bool) as KitSolid,
-        cast(trial_kit as bool) as KitTrial,
+        trial_kit as trialKit,
         product_id,
         variant_id,
         kit_essentials as kitEssentials,
