@@ -1,0 +1,1 @@
+select * from {{ ref('stg_BIContent900__content900_Acquisition_Channel') }}

@@ -14,17 +14,17 @@ renamed as (
         type,
         name,
         category,
-        kit_home,
-        kit_kids,
-        kit_solid,
-        trial_kit,
+        kit_home as kitHome,
+        kit_kids as KitKids,
+        kit_solid as KitSolid,
+        trial_kit as KitTrial,
         product_id,
         variant_id,
-        kit_essentials,
-        quantity_refill,
-        color_and_perfume,
-        weight_of_plastic,
-        __products_per_basket
+        kit_essentials as kitEssentials,
+        quantity_refill as quantityRefill,
+        color_and_perfume ,
+        weight_of_plastic as weightPlastic,
+        __products_per_basket as productsPerBasket
 
     from source
 

@@ -59,6 +59,10 @@ sources:
       - name: content900_mapping_Grapevine_acquisitionChannel
       - name: content900_mapping_orderDiscountCode_acquisitionChannel 
       - name : content900_Product
+      - name : content900_Product_Category
+      - name : content900_Acquisition_Channel
+
+
 
 
   - name: externalData

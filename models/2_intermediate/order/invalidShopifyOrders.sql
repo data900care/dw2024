@@ -50,5 +50,5 @@ union all
     from {{ ref('stg_shopify__orders') }} so    
     where not exists 
         (select  1 from  {{ ref('stg_shopify__orderTags') }} t
-        where order_tag in ('OTP','Subscription') and t.shopify_orderId = so.shopify_orderId)
+        where regexp_contains(order_tag,'Subscription|OTP') and t.shopify_orderId = so.shopify_orderId)
 )
