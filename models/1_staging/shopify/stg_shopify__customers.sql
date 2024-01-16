@@ -8,7 +8,7 @@ source as (
 
 renamed as (
 
-    select id
+    select id as shopify_customerId
 
     from source
 
