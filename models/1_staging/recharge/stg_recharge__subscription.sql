@@ -16,7 +16,7 @@ renamed as (
         next_charge_scheduled_at,
         order_interval_frequency as orderIntervalFrequency,
         order_interval_unit as orderIntervalUnit,
-        price,
+        cast(price as numeric) as price,
         sku,
         status
     from source
