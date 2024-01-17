@@ -42,7 +42,7 @@ union all
 (
 select shopify_orderId ,'Initial order before upsell' as invalidLabel
     from {{ ref('stg_shopify__orderTags') }} 
-    where lower(order_tag) in ('upsellcancel','upsellcncel','upsellcancell','upcellcancel','cancelupsell')
+    where lower(tag) in ('upsellcancel','upsellcncel','upsellcancell','upcellcancel','cancelupsell')
 )
 union all
 (
@@ -50,5 +50,5 @@ union all
     from {{ ref('stg_shopify__orders') }} so    
     where not exists 
         (select  1 from  {{ ref('stg_shopify__orderTags') }} t
-        where regexp_contains(order_tag,'Subscription|OTP') and t.shopify_orderId = so.shopify_orderId)
+        where regexp_contains(tag,'Subscription|OTP') and t.shopify_orderId = so.shopify_orderId)
 )
