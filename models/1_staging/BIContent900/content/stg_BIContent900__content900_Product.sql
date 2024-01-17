@@ -15,7 +15,7 @@ renamed as (
         name,
         category,
         trial_kit as trialKit,        
-
+        case when lower(trial_kit) = lower("Trial Kit") then true else false end as isTrialKit,
         cast(kit_home as bool) as kitHome,
         cast(kit_kids as bool) as kitKids,
         cast(kit_solid as bool) as kitSolid,
