@@ -5,7 +5,7 @@ with ordersBefore20220117 as
 
 ordersWithRecurringTag as 
 (
-  select shopify_orderId from    {{ ref('stg_shopify__orderTags') }}  where tag = 'Recurring'
+  select shopify_orderId from    {{ ref('stg_shopify__orderTags') }}  where CONTAINS_SUBSTR(tag , 'Recurring')
 )
 
 
@@ -22,8 +22,8 @@ exists (select 1 from   ordersWithRecurringTag t   where   t.shopify_orderId = s
 
 union all
 
-select shopify_orderId, 'Recurring' as customerType
-from {{ ref('validShopifyOrders') }} so
+select shopify_orderId, 'Existing' as customerType
+from ordersBefore20220117 so
 where customerOrderRank > 1 and
 not exists (select 1 from   ordersWithRecurringTag t   where   t.shopify_orderId = so.shopify_orderId)
 

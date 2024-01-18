@@ -4,7 +4,9 @@ select so.*,
    ro.createdAt as recharge_createdAt,
     ro.scheduledAt,
     ro.shippedAt,
-   coalesce(c2020.CustomerType, c2023.CustomerType) as orderCustomerType
+    --c2020.CustomerType as orderCustomerType2020,
+    --c2023.CustomerType as     orderCustomerType2023,
+    coalesce(c2020.CustomerType, c2023.CustomerType) as orderCustomerType
 
 from {{ ref('validShopifyOrders') }} so
 left join  {{ ref('stg_recharge__orders') }} ro
