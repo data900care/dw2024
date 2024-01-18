@@ -29,7 +29,7 @@ union all
 select shopify_orderId ,invalidLabel
     from {{ ref('stg_shopify__orderDiscount') }} od
     join {{ ref('stg_invalidOrder_testDiscountCodes') }} i
-    on lower(od.discountcode) like concat('%',lower(i.discountCode),'%') and matchType = 'includes'
+    on lower(od.discountcode) like concat('%',lower(i.discountCode),'%') and matchType = 'includes' --CONTAINS_SUBSTR ?
 )
 union all
 (
