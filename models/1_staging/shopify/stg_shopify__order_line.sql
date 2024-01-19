@@ -10,17 +10,13 @@ renamed as (
 
     select
         order_id as shopify_orderId,     
-        index,  
-        pre_tax_price,
         price,
         product_id as productId,
         quantity,
         sku,
-        total_discount,
-        variant_id
-
+        total_discount as totalDiscount,
+        variant_id as variantId
     from source
-
 )
 
 select * from renamed
