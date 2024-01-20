@@ -17,5 +17,17 @@ renamed as (
 
     from source
 )
+,
+dedupped
+(
 
+    select 
+    shopify_orderId,
+    min(recharge_orderId)
+    from renamed
+    group by shopify_orderId
+    
+
+)
 select * from renamed
+where shopify_orderId in (select shopify_orderId from  dedupped)

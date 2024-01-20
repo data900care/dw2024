@@ -9,7 +9,7 @@ source as (
 renamed as (
 
     select order_id as shopify_orderId,
-    value as order_tag
+    value as tag
 
     from source
 
