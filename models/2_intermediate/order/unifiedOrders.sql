@@ -15,3 +15,4 @@ left join  {{ ref('orderCustomerType2020') }} c2020
 using (shopify_orderId)
 left join {{ ref('orderCustomerType20220117') }} c2023
 using (shopify_orderId)
+--where shopify_orderId = 4632692785231
