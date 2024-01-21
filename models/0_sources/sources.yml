@@ -3,9 +3,7 @@ sources:
   - name: shopify
     database: trans-radius-363407
 
-    freshness: # default freshness
-      warn_after: {count: 12, period: hour}
-      error_after: {count: 24, period: hour}
+
     loaded_at_field: updated_at
 
     schema: staging_fivetran_shopify
@@ -22,9 +20,7 @@ sources:
   - name: recharge
     database: trans-radius-363407
 
-    freshness: # default freshness
-      warn_after: {count: 12, period: hour}
-      error_after: {count: 24, period: hour}
+    
     loaded_at_field: updated_at
 
     schema: staging_fivetran_recharge
