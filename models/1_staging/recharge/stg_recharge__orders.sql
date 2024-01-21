@@ -18,16 +18,15 @@ renamed as (
     from source
 )
 ,
-dedupped
-(
+duplicatesRemoved as (
 
     select 
     shopify_orderId,
-    min(recharge_orderId)
+    min(recharge_orderId) as recharge_orderId
     from renamed
+    where shopify_orderId is not null
     group by shopify_orderId
-    
 
 )
 select * from renamed
-where shopify_orderId in (select shopify_orderId from  dedupped)
+where recharge_orderId in (select recharge_orderId from  duplicatesRemoved)
