@@ -2,7 +2,7 @@ with
 
 source as (
 
-    select * from {{ source('BIContent900', 'content900_Product') }}
+    select * from {{ source('BIContent900', 'content900_Product_Variant') }}
 
 ),
 
@@ -25,8 +25,6 @@ renamed as (
         cast(weight_of_plastic as int) as  weightPlastic,
         cast(__products_per_basket as int) as productsPerBasket,
         
-        cast(product_id as int) as product_id ,
-        cast(variant_id as int) as variant_id,
         color_and_perfume 
     from source
 
