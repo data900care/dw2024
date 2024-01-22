@@ -15,6 +15,7 @@ where customerOrderRank = 1
 
 union all
 
+
 select shopify_orderId, 'Recurring' as customerType
 from ordersBefore20220117 so
 where customerOrderRank > 1 and 

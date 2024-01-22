@@ -13,6 +13,7 @@ renamed as (
         billing_address_country as billCountry,
         cancel_reason as cancelReason,
         cast(datetime(cancelled_at, "Europe/Paris") as date) as cancelledAt,
+        case when cancelled_at is null then false else true end as cancelled,
         confirmed,
         cast(datetime(created_at, "Europe/Paris") as date) as createdAt,
         currency,
