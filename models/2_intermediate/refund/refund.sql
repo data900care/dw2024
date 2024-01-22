@@ -1,7 +1,7 @@
 select 
  shopify_orderId,
  createdAt,
- subtotal
- from {{ ref('stg_shopify__refund') }} r 
- join {{ ref('stg_shopify__order_line_refund') }} rl
- using (refundId)
+ amount
+ from {{ ref('stg_shopify__refundTransactions') }} r 
+ 
+where shopify_orderId  in (select shopify_orderId from  {{ ref('validShopifyOrders') }})

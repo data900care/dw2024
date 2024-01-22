@@ -14,8 +14,7 @@ sources:
       - name: order_tag
       - name: order_note_attribute
       - name: order_line
-      - name: refund
-      - name: order_line_refund
+      - name: transaction
 
 
       
