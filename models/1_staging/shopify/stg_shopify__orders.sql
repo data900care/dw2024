@@ -6,6 +6,7 @@ source as (
 
 ),
 
+
 renamed as (
 
     select
@@ -17,24 +18,22 @@ renamed as (
         confirmed,
         cast(datetime(created_at, "Europe/Paris") as date) as createdAt,
         currency,
-        current_subtotal_price,
-        current_total_discounts,
-        current_total_price,
-        current_total_tax,
         customer_id as shopify_customerId,
         name as orderName,
         number,
         order_number,
         shipping_address_country as shippingCountry,
-        subtotal_price,
-        taxes_included,
-        test,
-        total_discounts,
-        total_line_items_price,
-        total_price,
-        total_tax
 
-    from source
+        test,
+
+        round(total_line_items_price,2) as subTotal,
+        round(total_discounts,2) as discount,
+        round(total_tax) as tax,
+        taxes_included as taxesIncluded,
+        round(total_price,1) as total -- = total_line_items_price - total_discounts + total_shipping + total_tax (if taxes_included is false)
+
+    from source s
+
 
 )
 
