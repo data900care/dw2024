@@ -17,7 +17,9 @@ select
     fo.firstorder_shippingCountry,
     ss.firstSubscriptionDate,
     ss.lastSubscriptionCancelledAt,
-    ss.subscriptionsActiveCount
+    ss.subscriptionsActiveCount,
+    firstOrder_distinctSkuCount,
+    firstOrder_totalSubscription
 from {{ ref("stg_shopify__customers") }} sc
 left join customerKitCounts ck using (shopify_customerid)
 left join {{ ref("firstOrder") }} fo using (shopify_customerid)

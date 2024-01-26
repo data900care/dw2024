@@ -11,9 +11,9 @@ renamed as (
     select
  
         sku,
-        type,
+        type as productType,
         name,
-        category,
+        category as productCategory,
         trial_kit as trialKit,        
         case when lower(trial_kit) = lower("Trial Kit") then true else false end as isTrialKit,
         cast(kit_home as bool) as kitHome,
