@@ -40,4 +40,4 @@ models:
     1_staging :
         +materialized: ephemeral 
     3_serve:
-        +materialized: table
+        +materialized: view #table
