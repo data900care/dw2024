@@ -7,7 +7,8 @@ select c.shopify_customerId,
          orderIntervalUnit,
         price,
         sku,
-        status
+        status,
+rank() over (partition by shopify_customerId order by s.idSubscription ) as customerSubscriptionRank,
  from {{ ref('stg_recharge__subscription') }} s
 join {{ ref('stg_recharge__customers') }} c 
 on s.recharge_customerId = c.recharge_customerId
