@@ -1,6 +1,6 @@
 SELECT
     shopify_customerId,ok.shopify_orderId,
-    kitType
+    bundleType
   FROM
-   {{ ref('stg_shopify__orderKits') }} ok
+   {{ ref('stg_shopify__orderBundles') }} ok
    join {{ ref('validShopifyOrders') }} o using (shopify_orderId)

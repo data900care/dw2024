@@ -1,8 +1,8 @@
 SELECT
     shopify_customerId,
-    kitType
+    bundleType
   FROM
-   {{ ref('stg_shopify__orderKits') }} ok
+   {{ ref('stg_shopify__orderBundles') }} ok
    join {{ ref('validShopifyOrders') }} o using (shopify_orderId)
    where
     customerOrderRank = 1
