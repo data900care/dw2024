@@ -15,5 +15,14 @@ renamed as (
     from source
 
 )
+,
+duplicates as (
+    select
+        email
+    from source
+    group by email 
+    having count(distinct cohort) > 1
 
-select * from renamed
+)
+select distinct  email, cohort from renamed
+where email not in (select email from duplicates)
