@@ -16,7 +16,7 @@ sources:
       - name: order_line
       - name: order_shipping_line
 
-      - name: transaction
+      - name: transaction #for Refund amounts
 
 
       
@@ -66,6 +66,7 @@ sources:
                   - not_null
       - name : content900_Product_Category
       - name : content900_Acquisition_Channel
+      - name : content900_tests_customer_cohort_groups
 
 
 
