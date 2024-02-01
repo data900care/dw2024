@@ -10,6 +10,7 @@ renamed as (
 
     select
         id as idSubscription,
+        address_id as idAdresse,
         cast(datetime(cancelled_at, "Europe/Paris") as date) as cancelledAt,
         cast(datetime(created_at, "Europe/Paris") as date) as createdAt,
         customer_id as recharge_customerId,

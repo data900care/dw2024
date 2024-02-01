@@ -40,6 +40,8 @@ sources:
               description:  key of the shopify customer table, sometimes Null Values, sometimes multiples Recharge customer ñaping to same shopify customer and sometimes recharge customer mapping to a non existing Shopify Customer.
       - name: subscription
       - name : order_line_item
+      - name : address
+      
 
     
   - name: BIContent900
