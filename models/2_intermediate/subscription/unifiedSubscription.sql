@@ -9,7 +9,9 @@ select c.shopify_customerId,
         sku,
         status,
 rank() over (partition by shopify_customerId order by s.idSubscription ) as customerSubscriptionRank,
-        countryCode 
+        countryCode,
+        city,
+        zip 
  from {{ ref('stg_recharge__subscription') }} s
 join {{ ref('stg_recharge__customers') }} c 
 on s.recharge_customerId = c.recharge_customerId
