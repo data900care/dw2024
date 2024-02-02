@@ -26,7 +26,7 @@ UNNEST(SPLIT(bundleType)) kt
 
 select * from splited
 union all
-SELECT order_id as shopify_orderId,'essentiels' as bundleType
+SELECT order_id as shopify_orderId,'essentials' as bundleType
         FROM  source
     where name like 'kitEssentiels'  and  value = '"true"' 
 union all
