@@ -9,7 +9,8 @@ source as (
 renamed as (
 
     select id as shopify_customerId,
-    email
+    email,
+    cast(datetime(created_at, "Europe/Paris") as date) as createdAt
 
     from source
 

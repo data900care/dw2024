@@ -10,6 +10,7 @@ group by shopify_customerId
 
 select
     sc.shopify_customerid,
+    createdAt,
     ck.totalBundleCount,
     distinctBundleCount,
     fo.firstorder_acquisitionChannel,
