@@ -13,7 +13,7 @@ renamed as (
         order_id as recharge_orderId,
         external_product_id_ecommerce,
         external_variant_id_ecommerce,
-        property_subscription_id,
+        purchase_item_id as subscriptionId,
         quantity,
         sku,
         tax_due,
