@@ -9,7 +9,7 @@ select so.*,
     coalesce(c2020.CustomerType, c2023.CustomerType) as orderCustomerType,
     utm.data as utmCampaign,
     itemCount,
-    totalItemPrice
+    totalItemPrice,
     totalItemQuantity
 
 from {{ ref('validShopifyOrders') }} so
