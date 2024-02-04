@@ -1,1 +1,1 @@
-select * from {{ ref('productReviews') }}
+select * from {{ ref('onlyProductReviews') }}
