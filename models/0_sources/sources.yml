@@ -73,7 +73,7 @@ sources:
 
 
 
-  - name: externalData
+  - name: externalDataAirbyte
     database: trans-radius-363407
 
     freshness: # default freshness
@@ -84,8 +84,9 @@ sources:
     schema: staging_airbyte_cloud
     tables:
       - name: externalData_Grapevine_Survey_Data
+      - name: recharge_okr_CumSubscriptionsWeekly
 
-  - name: externalData2
+  - name: externalDataFivetran
     database: trans-radius-363407
 
     freshness: # default freshness

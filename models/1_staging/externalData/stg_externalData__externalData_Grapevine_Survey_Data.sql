@@ -2,7 +2,7 @@ with
 
 source as (
 
-    select * from {{ source('externalData', 'externalData_Grapevine_Survey_Data') }}
+    select * from {{ source('externalDataAirbyte', 'externalData_Grapevine_Survey_Data') }}
 
 ),
 

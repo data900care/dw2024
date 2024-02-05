@@ -1,0 +1,1 @@
+select * from {{ ref('stg_externalData__recharge_okr_CumSubscriptionsWeekly') }} 

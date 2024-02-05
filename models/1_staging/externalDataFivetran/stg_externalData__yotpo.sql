@@ -1,6 +1,6 @@
 with
 
-    source as (select * from {{ source("externalData2", "yotpo") }}),
+    source as (select * from {{ source("externalDataFivetran", "yotpo") }}),
 
     renamed as (
 

@@ -5,7 +5,7 @@ onlyProductReviews as (
     sku,
     productTitle,
     score
-    from {{ ref('stg_externalData2__yotpo') }}
+    from {{ ref('stg_externalData__yotpo') }}
     where type = 'product_review'
 )
 
