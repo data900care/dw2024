@@ -9,17 +9,19 @@ source as (
 renamed as (
 
     select
-        weekno,
-        weekend,
-        weekyear,
-        weekstart,
-        cumsubscriptions,
-        netsubscriptions,
-        newsubscriptions,
-        churnedsubscriptions
+        cast(weekno as int) as weekNo,
+        PARSE_DATE('%d/%m/%Y',  weekstart) as weekStart,
+        PARSE_DATE('%d/%m/%Y',  weekend) as weekEnd,
+        weekyear as weekYear,
+      
+        cast(cumsubscriptions as int) as cumulativeSubscriptions,
+        cast(netsubscriptions as int) as netSubscriptions,
+        cast(newSubscriptions as int) as newSubscriptions,
+        cast(churnedSubscriptions as int) as churnedSubscriptions
 
     from source
 
 )
 
 select * from renamed
+where weekno is  not null
