@@ -85,6 +85,8 @@ sources:
     tables:
       - name: externalData_Grapevine_Survey_Data
       - name: recharge_okr_CumSubscriptionsWeekly
+      - name: sparkDo__900CARE__PLATFORM_DAILY_SPEND 
+
 
   - name: externalDataFivetran
     database: trans-radius-363407
