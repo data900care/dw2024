@@ -19,8 +19,8 @@ select
     ss.firstSubscriptionDate,
     ss.lastSubscriptionCancelledAt,
     ss.subscriptionsActiveCount,
-    firstOrder_distinctSkuCount,
-    firstOrder_totalSubscription,
+    firstOrder_distinctSkuCountRechargeType,
+    firstOrder_totalSubscriptionRechargeType,
     co.cohort
 from {{ ref("stg_shopify__customers") }} sc
 left join customerBundleCounts ck using (shopify_customerid)
