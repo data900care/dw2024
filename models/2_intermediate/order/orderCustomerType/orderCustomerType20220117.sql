@@ -6,5 +6,5 @@
                         else 'Recurring'
                  end
     end as customerType
-from {{ ref('validShopifyOrders') }} so
+from {{ ref('shopifyOrderM') }} so
 where createdAt >= '2022-01-17'

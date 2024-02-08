@@ -1,6 +1,1 @@
-select 
- shopify_orderId,
- createdAt,
- amount
- from {{ ref('inner_shopify__refundTransactions') }} r 
- 
+select * from {{ ref("stg_shopify__transaction") }} where kind = 'refund'

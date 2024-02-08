@@ -1,1 +1,1 @@
-select * from {{ ref('inner_shopify__orderBundles') }}
+select * from {{ ref('orderBundles_from_order_note_attribute') }}

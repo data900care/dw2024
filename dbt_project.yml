@@ -37,7 +37,11 @@ clean-targets:         # directories to be removed by `dbt clean`
 
 models:
   modern_data_stack :
-    1_staging :
+    10_staging :
+        +materialized: ephemeral 
+    11_init :
+        +materialized: ephemeral 
+    15_inner :
         +materialized: ephemeral 
     3_serve:
         +materialized: view #table

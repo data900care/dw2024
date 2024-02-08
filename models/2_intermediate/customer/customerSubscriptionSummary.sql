@@ -3,7 +3,7 @@ with
         select
             c.shopify_customerId,
             sum(subscriptionsActiveCount) as subscriptionsActiveCount
-        from {{ ref("ShopifyRechargeCustomers") }} c
+        from {{ ref("inner_shopify__customer") }} c
         group by c.shopify_customerId
     ),
     dateSummary as (
@@ -11,9 +11,9 @@ with
             c.shopify_customerid,
             min(s.createdat) as firstSubscriptionDate,
             max(s.cancelledat) as lastSubscriptionCancelledAt
-        from {{ ref("ShopifyRechargeCustomers") }} c
-        join {{ ref("stg_recharge__subscription") }} s using (recharge_customerId)
-        where shopify_customerId is not null
+        from {{ ref("inner_shopify__customer") }} c
+        join {{ ref("inner_recharge__subscription") }} s using (recharge_customerId)
+        where c.shopify_customerId is not null
         group by c.shopify_customerId
     )
 

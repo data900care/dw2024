@@ -5,4 +5,4 @@ select shopify_orderId,
         sku,
         totalDiscount
         
-from {{ ref('stg_shopify__order_line') }}
+from {{ ref('inner_shopify__order_line') }}

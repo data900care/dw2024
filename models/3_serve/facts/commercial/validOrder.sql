@@ -1,1 +1,2 @@
-select * from {{ ref('unifiedOrders') }}
+select * from {{ ref('shopifyOrderL') }}
+where validorder = true

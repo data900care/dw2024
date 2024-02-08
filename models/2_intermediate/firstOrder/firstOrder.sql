@@ -17,7 +17,7 @@ select
     createdat as firstorder_shopifycreatedat,
     distinctskucountRechargeType as firstorder_distinctSkucountRechargeType,
     totalsubscriptionRechargeType as firstorder_totalsubscriptionRechargeType
-from {{ ref("validShopifyOrders") }} o
+from {{ ref("shopifyOrderM") }}  o
 left join firstordersubscriptions f using (shopify_customerid)
 
 where customerorderrank = 1

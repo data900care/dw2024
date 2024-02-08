@@ -4,7 +4,7 @@ select
     shopify_customerId,
     count(distinct bundleType) as distinctBundleCount,
     count(*) as totalBundleCount,
-from {{ ref('customerValidBundles') }}
+from {{ ref('customerBundles') }}
 group by shopify_customerId
 )
 
@@ -22,7 +22,7 @@ select
     firstOrder_distinctSkuCountRechargeType,
     firstOrder_totalSubscriptionRechargeType,
     co.cohort
-from {{ ref("stg_shopify__customer") }} sc
+from {{ ref("inner_shopify__customer") }} sc
 left join customerBundleCounts ck using (shopify_customerid)
 left join {{ ref("firstOrder") }} fo using (shopify_customerid)
 left join {{ ref("customerSubscriptionSummary") }} ss using (shopify_customerid)

@@ -9,7 +9,7 @@ source as (
 renamed as (
 
     select
-        id as idSubscription,
+        id as subscriptionId,
         address_id as idAdresse,
         cast(datetime(cancelled_at, "Europe/Paris") as date) as cancelledAt,
         cast(datetime(created_at, "Europe/Paris") as date) as createdAt,

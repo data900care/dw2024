@@ -1,6 +1,6 @@
 with ordersBefore20220117 as
 (
-    select shopify_orderId,customerOrderRank from {{ ref('validShopifyOrders') }} where createdAt < '2022-01-17'
+    select shopify_orderId,customerOrderRank from {{ ref('inner_shopify__order') }} where createdAt < '2022-01-17'
 ),
 
 ordersWithRecurringTag as 
