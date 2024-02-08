@@ -13,7 +13,7 @@ rank() over (partition by shopify_customerId order by s.idSubscription ) as cust
         city,
         zip 
  from {{ ref('stg_recharge__subscription') }} s
-join {{ ref('stg_recharge__customers') }} c 
+join {{ ref('stg_recharge__customer') }} c 
 on s.recharge_customerId = c.recharge_customerId
 left join {{ ref('stg_recharge__address') }} a 
 on a.id = s.idAdresse

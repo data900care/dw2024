@@ -1,5 +1,5 @@
 select  o.shopify_orderId, min(g.acquisitionChannel) as acquisitionChannel
-from {{ ref("stg_shopify__orders") }} o
+from {{ ref("stg_shopify__order") }} o
 join
     {{ ref("stg_externalData__externalData_Grapevine_Survey_Data") }} s using (shopify_orderId)
 join

@@ -1,7 +1,7 @@
 select distinct o.shopify_orderId, d.acquisitionchannel
-from {{ ref("stg_shopify__orders") }} o
+from {{ ref("stg_shopify__order") }} o
 join
-    {{ ref("stg_shopify__orderDiscount") }} od using (shopify_orderId)
+    {{ ref("stg_shopify__order_discount_code") }} od using (shopify_orderId)
 join
     {{
         ref(

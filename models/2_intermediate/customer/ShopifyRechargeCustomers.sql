@@ -1,6 +1,6 @@
 select  rc.*
-from {{ ref('stg_shopify__customers') }} sc
-left join  {{ ref('stg_recharge__customers') }} rc using (shopify_customerid)
+from {{ ref('stg_shopify__customer') }} sc
+left join  {{ ref('stg_recharge__customer') }} rc using (shopify_customerid)
 
 
 

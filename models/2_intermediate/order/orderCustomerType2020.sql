@@ -5,7 +5,7 @@ with ordersBefore20220117 as
 
 ordersWithRecurringTag as 
 (
-  select shopify_orderId from    {{ ref('stg_shopify__orderTags') }}  where CONTAINS_SUBSTR(tag , 'Recurring')
+  select shopify_orderId from    {{ ref('stg_shopify__order_tag') }}  where CONTAINS_SUBSTR(tag , 'Recurring')
 )
 
 

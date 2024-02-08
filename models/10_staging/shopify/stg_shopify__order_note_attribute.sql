@@ -1,21 +1,11 @@
-with 
+with
 
-source as (
+    source as (
 
-    select order_id as shopify_orderId, value
-     from {{ source('shopify', 'order_note_attribute') }}
+        select order_id as shopify_orderid, value, name
+        from {{ source("shopify", "order_note_attribute") }}
+        where name in ('utm_campaign','kitTypes','kitEssentiels','kitSolide','kitKids')
+    )
 
-),
-
-
-cleaned as (
-
-
-    SELECT shopify_orderId,
-        translate(replace(value,'\\',''),'"][','') as bundleType
-        FROM  source 
-    where name = 'kitTypes' and value <> '"[]"' --and order_id = 5873428889937
-
-)
-
-select * from cleaned
+select *
+from source

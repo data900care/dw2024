@@ -13,21 +13,21 @@ select shopify_orderId, invalidLabel
 union all
 (
 select shopify_orderId ,invalidLabel
-    from {{ ref('stg_shopify__orderDiscount') }} od
+    from {{ ref('stg_shopify__order_discount_code') }} od
     join {{ ref('stg_invalidOrder_testDiscountCodes') }} i
     on od.discountcode = i.discountCode and matchType = 'equal'
 )
 union all
 (
 select shopify_orderId ,invalidLabel
-    from {{ ref('stg_shopify__orderDiscount') }} od
+    from {{ ref('stg_shopify__order_discount_code') }} od
     join {{ ref('stg_invalidOrder_testDiscountCodes') }} i
     on od.discountcode like concat(i.discountCode,'%') and matchType = 'starts'
 )
 union all
 (
 select shopify_orderId ,invalidLabel
-    from {{ ref('stg_shopify__orderDiscount') }} od
+    from {{ ref('stg_shopify__order_discount_code') }} od
     join {{ ref('stg_invalidOrder_testDiscountCodes') }} i
     on lower(od.discountcode) like concat('%',lower(i.discountCode),'%') and matchType = 'includes' --CONTAINS_SUBSTR ?
 )
@@ -41,7 +41,7 @@ select shopify_orderId ,invalidLabel
 union all
 (
 select shopify_orderId ,'Initial order before upsell' as invalidLabel
-    from {{ ref('stg_shopify__orderTags') }} 
+    from {{ ref('stg_shopify__order_tag') }} 
     where lower(tag) in ('upsellcancel','upsellcncel','upsellcancell','upcellcancel','cancelupsell')
 )
 union all
@@ -49,6 +49,6 @@ union all
     select shopify_orderId,  'No Recharge Order Tags'
     from {{ ref('stg_shopify__order') }} so    
     where not exists 
-        (select  1 from  {{ ref('stg_shopify__orderTags') }} t
+        (select  1 from  {{ ref('stg_shopify__order_tag') }} t
         where regexp_contains(tag,'Subscription|OTP') and t.shopify_orderId = so.shopify_orderId)
 )

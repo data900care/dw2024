@@ -1,1 +1,1 @@
-select * from {{ ref('validOrderRefunds') }}
+select * from {{ ref('orderRefunds') }}

@@ -22,7 +22,7 @@ select
     firstOrder_distinctSkuCountRechargeType,
     firstOrder_totalSubscriptionRechargeType,
     co.cohort
-from {{ ref("stg_shopify__customers") }} sc
+from {{ ref("stg_shopify__customer") }} sc
 left join customerBundleCounts ck using (shopify_customerid)
 left join {{ ref("firstOrder") }} fo using (shopify_customerid)
 left join {{ ref("customerSubscriptionSummary") }} ss using (shopify_customerid)

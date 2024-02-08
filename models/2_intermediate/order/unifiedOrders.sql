@@ -13,13 +13,13 @@ select so.*,
     totalItemQuantity
 
 from {{ ref('validShopifyOrders') }} so
-left join  {{ ref('stg_recharge__orders') }} ro
+left join  {{ ref('stg_recharge__order') }} ro
 using (shopify_orderId)
 left join  {{ ref('orderCustomerType2020') }} c2020
 using (shopify_orderId)
 left join {{ ref('orderCustomerType20220117') }} c2023
 using (shopify_orderId)
-left join {{ ref('stg_shopify__orderUTMCampaign') }} utm 
+left join {{ ref('inner_shopify__orderUTMCampaign') }} utm 
 using (shopify_orderId)
 left join {{ ref('orderLineAggregations') }} a 
 using (shopify_orderId)
