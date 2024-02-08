@@ -4,7 +4,7 @@ with aggregations as
     count(*) as itemCount,
     sum(price) as totalItemPrice,
     sum(quantity) as totalItemQuantity,
-    count(distinct sku) as distinctskucount
+    count(distinct sku) as distinctSkuCount
 from {{ ref("stg_shopify__order_line") }}
 
 group by  shopify_orderId)

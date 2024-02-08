@@ -1,4 +1,4 @@
-select o.*, coalesce(c2020.customertype, c2023.customertype) as ordercustomertype,
+select o.*, coalesce(c2020.customertype, c2023.customertype) as orderCustomerType,
 
 from {{ ref("shopifyOrderM") }} o
 
