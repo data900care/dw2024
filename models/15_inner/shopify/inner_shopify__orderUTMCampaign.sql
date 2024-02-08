@@ -4,7 +4,7 @@ with
 
 source as (
 
-    select * from {{ source('shopify', 'order_note_attribute') }}
+    select * from {{ ref('stg_shopify__order_note_attribute') }}
 
 ),
 

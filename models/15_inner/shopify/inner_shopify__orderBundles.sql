@@ -1,25 +1,10 @@
 with 
 
-source as (
 
-    select * from {{ source('shopify', 'order_note_attribute') }}
-
-),
-
-
-cleaned as (
-
-
-    SELECT order_id as shopify_orderId,
-        translate(replace(value,'\\',''),'"][','') as bundleType
-        FROM  source 
-    where name = 'kitTypes' and value <> '"[]"' --and order_id = 5873428889937
-
-),
 
 splited as (
      SELECT * EXCEPT(kt) REPLACE(ltrim(kt) AS bundleType)
-FROM  cleaned,
+FROM  {{ ref('stg_shopify__order_note_attribute') }},
 UNNEST(SPLIT(bundleType)) kt
 
 )
