@@ -1,8 +1,8 @@
 select shopify_orderId,     
         price,
-        productId,
+        
         quantity,
         sku,
-        totalDiscount,
-        variantId
+        totalDiscount
+        
 from {{ ref('stg_shopify__order_line') }}

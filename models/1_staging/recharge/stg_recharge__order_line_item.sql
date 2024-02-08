@@ -11,8 +11,6 @@ renamed as (
     select
         index,
         order_id as recharge_orderId,
-        external_product_id_ecommerce,
-        external_variant_id_ecommerce,
         purchase_item_id as subscriptionId,
         quantity,
         sku,
@@ -22,7 +20,8 @@ renamed as (
         title,
         total_price,
         unit_price,
-        unit_price_includes_tax
+        unit_price_includes_tax,
+        index as lineIndex
     from source
 
 )
