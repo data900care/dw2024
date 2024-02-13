@@ -10,7 +10,7 @@ renamed as (
 
     select
         campaign_channel as campaignChannel,
-        date as spendDate,
+        date+1 as spendDate,
         cost
 
     from source

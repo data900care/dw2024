@@ -44,7 +44,7 @@ sources:
       
 
     
-  - name: internal
+  - name: BIContent900
     database: trans-radius-363407
 
     freshness: # default freshness
