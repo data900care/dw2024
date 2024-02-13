@@ -44,7 +44,7 @@ sources:
       
 
     
-  - name: BIContent900
+  - name: internal
     database: trans-radius-363407
 
     freshness: # default freshness
@@ -69,6 +69,8 @@ sources:
       - name : content900_Product_Category
       - name : content900_Acquisition_Channel
       - name : content900_tests_customer_cohort_groups
+      - name : content900_Country
+
 
 
 
