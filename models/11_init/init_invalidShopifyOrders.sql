@@ -4,6 +4,7 @@ from {{ ref('stg_shopify__order') }}
 where cancelledAt is not null
 )
 union all
+
 (
 select shopify_orderId, invalidLabel
     from {{ ref('stg_shopify__order') }} 
@@ -48,7 +49,9 @@ union all
 (
     select shopify_orderId,  'No Recharge Order Tags'
     from {{ ref('stg_shopify__order') }} so    
+   -- left join {{ ref("stg_shopify__order_discount_code") }} d using (shopify_orderid)
     where not exists 
         (select  1 from  {{ ref('stg_shopify__order_tag') }} t
         where regexp_contains(tag,'Subscription|OTP') and t.shopify_orderId = so.shopify_orderId)
+ -- and d.discountCode <> '900BASSADEUR'
 )
