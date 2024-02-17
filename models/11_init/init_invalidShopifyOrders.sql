@@ -78,6 +78,6 @@ with
         -- and d.discountCode <> '900BASSADEUR'
         )
     )
-select shopify_orderid, min(invalidlabel)
+select shopify_orderid, min(invalidlabel) as invalidlabel
 from fullinvalid
 group by shopify_orderid
