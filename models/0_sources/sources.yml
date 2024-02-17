@@ -47,10 +47,10 @@ sources:
   - name: BIContent900
     database: trans-radius-363407
 
-    freshness: # default freshness
-      warn_after: {count: 72, period: hour}
-      error_after: {count: 120, period: hour}
-    loaded_at_field: _airbyte_extracted_at
+    # freshness: # default freshness
+    #   warn_after: {count: 72, period: hour}
+    #   error_after: {count: 120, period: hour}
+    # loaded_at_field: _airbyte_extracted_at
 
     schema: staging_airbyte_cloud
     tables:
@@ -78,10 +78,10 @@ sources:
   - name: externalDataAirbyte
     database: trans-radius-363407
 
-    freshness: # default freshness
-      warn_after: {count: 240, period: hour}
-      error_after: {count: 480, period: hour}
-    loaded_at_field: _airbyte_extracted_at
+    # freshness: # default freshness
+    #   warn_after: {count: 240, period: hour}
+    #   error_after: {count: 480, period: hour}
+    # loaded_at_field: _airbyte_extracted_at
 
     schema: staging_airbyte_cloud
     tables:
@@ -93,10 +93,10 @@ sources:
   - name: externalDataFivetran
     database: trans-radius-363407
 
-    freshness: # default freshness
-      warn_after: {count: 240, period: hour}
-      error_after: {count: 480, period: hour}
-    loaded_at_field: _fivetran_synced
+    # freshness: # default freshness
+    #   warn_after: {count: 240, period: hour}
+    #   error_after: {count: 480, period: hour}
+    # loaded_at_field: _fivetran_synced
 
     schema: staging_fivetran_drive
     tables:
