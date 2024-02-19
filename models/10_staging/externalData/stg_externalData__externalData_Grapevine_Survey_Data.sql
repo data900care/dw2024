@@ -10,6 +10,7 @@ renamed as (
 
         select
         cast(order_id as int) as shopify_orderId,
+        cast(left(created_at,10) as date) as createdAt,
         answer 
 
     from source
