@@ -1,1 +1,1 @@
-select * from {{ ref('inner_recharge__subscription') }}
+select * from {{ ref('subscriptionM') }}

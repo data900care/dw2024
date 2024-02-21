@@ -4,9 +4,7 @@ select
     rank() over (
         partition by shopify_customerid order by subscriptionId
     ) as customersubscriptionrank,
-    a.countrycode,
-    a.city,
-    a.zip
+    a.countrycode
 from {{ ref("stg_recharge__subscription") }} s
 join
     {{ ref("stg_recharge__customer") }} c
