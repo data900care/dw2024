@@ -11,7 +11,7 @@ renamed as (
     select
       
         category,
-        display_order,
+        cast(display_order as int) as display_order,
         impact_on_recurring_order_basket_size
 
     from source
