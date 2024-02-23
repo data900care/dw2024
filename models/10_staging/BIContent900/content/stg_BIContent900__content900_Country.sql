@@ -12,7 +12,8 @@ renamed as (
         code as countryCode,
         name as countryName,
         `group` as countryGroup,
-        `order` as countryOrder
+        `order` as countryOrder,
+        campaign_location as campaignLocation
 
     from source
 
