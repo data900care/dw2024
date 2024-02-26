@@ -21,8 +21,7 @@ select
     ss.subscriptionsActiveCount,
     firstOrder_distinctSkuCountRechargeType,
     firstOrder_totalSubscriptionRechargeType,
-    co.cohort,
-    ss.upsellCustomerType
+    co.cohort
 from {{ ref("inner_shopify__customer") }} sc
 left join customerBundleCounts ck using (shopify_customerid)
 left join {{ ref("firstOrder") }} fo using (shopify_customerid)

@@ -52,8 +52,7 @@ sources:
 
     schema: staging_airbyte_cloud
     tables:
-      - name: airtable_airupsell___recurring_customers_tbleQksIw2sqeQorX  
-      - name : airtable_airupsell___new_customers_tblxwOJVxgBxb3kwc 
+      - name: airtable_airupsell___basefullupsells_tblRQj1DtQsrDcWef  
 
     
   - name: BIContent900
