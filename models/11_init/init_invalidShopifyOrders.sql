@@ -1,9 +1,11 @@
 
 with
+    notCanceledOrders as 
+    (select * from {{ ref("stg_shopify__order") }} where cancelled is false ),
     fullinvalid as (
         (
             select shopify_orderid, invalidlabel
-            from {{ ref("stg_shopify__order") }}
+            from notCanceledOrders
             join
                 {{ ref("stg_invalidOrder_customerIds") }} i
                 on shopify_customerid = i.customerid
@@ -12,6 +14,7 @@ with
         (
             select shopify_orderid, invalidlabel
             from {{ ref("stg_shopify__order_discount_code") }} od
+            join notCanceledOrders using(shopify_orderid)
             join
                 {{ ref("stg_invalidOrder_testDiscountCodes") }} i
                 on od.discountcode = i.discountcode
@@ -21,6 +24,7 @@ with
         (
             select shopify_orderid, invalidlabel
             from {{ ref("stg_shopify__order_discount_code") }} od
+            join notCanceledOrders using(shopify_orderid)
             join
                 {{ ref("stg_invalidOrder_testDiscountCodes") }} i
                 on od.discountcode like concat(i.discountcode, '%')
@@ -30,6 +34,7 @@ with
         (
             select shopify_orderid, invalidlabel
             from {{ ref("stg_shopify__order_discount_code") }} od
+            join notCanceledOrders using(shopify_orderid)
             join
                 {{ ref("stg_invalidOrder_testDiscountCodes") }} i
                 on lower(od.discountcode) like concat('%', lower(i.discountcode), '%')
@@ -38,7 +43,7 @@ with
         union all
         (
             select shopify_orderid, invalidlabel
-            from {{ ref("stg_shopify__order") }} so
+            from notCanceledOrders so
             join
                 {{ ref("stg_invalidOrder_orderNames") }} i on so.ordername = i.ordername
         )
@@ -46,6 +51,7 @@ with
         (
             select shopify_orderid, 'Initial order before upsell' as invalidlabel
             from {{ ref("stg_shopify__order_tag") }}
+            join notCanceledOrders using(shopify_orderid)
             where
                 lower(tag) in (
                     'upsellcancel',
@@ -58,7 +64,7 @@ with
         union all
         (
             select shopify_orderid, 'No Recharge Order Tags'
-            from {{ ref("stg_shopify__order") }} so
+            from notCanceledOrders so
             -- left join {{ ref("stg_shopify__order_discount_code") }} d using
             -- (shopify_orderid)
             where
