@@ -1,10 +1,4 @@
-/*(
-select shopify_orderId, concat('Canceled: ' , cancelReason) as invalidLabel
-from {{ ref('stg_shopify__order') }} 
-where cancelledAt is not null
-)
-union all
-*/
+
 with
     fullinvalid as (
         (
