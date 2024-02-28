@@ -25,8 +25,8 @@ with
     ),
     frequencySummary as (
         select recharge_orderId,
-        min(orderIntervalFrequency) as minOrderIntervalFrequency,
-        max(orderIntervalFrequency) as maxOrderIntervalFrequency
+        min(orderIntervalFrequencyDay) as minOrderIntervalFrequency,
+        max(orderIntervalFrequencyDay) as maxOrderIntervalFrequency
         from {{ ref("recharge_orderLineM") }} 
         group by recharge_orderId
     )

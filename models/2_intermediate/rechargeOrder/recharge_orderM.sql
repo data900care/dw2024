@@ -1,5 +1,7 @@
 select ro.*,
-subscriptionsActiveCount,subscriptionsCount,firstSubscriptionDate,lastSubscriptionCancelledAt, maxsubscriptionOrderCount,minOrderIntervalFrequency,maxOrderIntervalFrequency
+subscriptionsActiveCount,subscriptionsCount,firstSubscriptionDate,lastSubscriptionCancelledAt, maxsubscriptionOrderCount,
+minOrderIntervalFrequency,
+maxOrderIntervalFrequency
 
 ,so.validOrder 
 from {{ ref('inner_recharge_order') }} ro 
