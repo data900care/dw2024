@@ -1,1 +1,1 @@
-select * except(recharge_orderId) from {{ ref('recharge_orderLineM') }}
+select * from {{ ref('recharge_orderLineM') }}
