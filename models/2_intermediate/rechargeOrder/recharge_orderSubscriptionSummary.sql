@@ -22,12 +22,20 @@ with
 
        from {{ ref("recharge_orderLineM") }} 
         group by recharge_orderId
+    ),
+    frequencySummary as (
+        select recharge_orderId,
+        min(orderIntervalFrequency) as minOrderIntervalFrequency,
+        max(orderIntervalFrequency) as maxOrderIntervalFrequency
+        from {{ ref("recharge_orderLineM") }} 
+        group by recharge_orderId
     )
 
 select recharge_orderId, ifnull(subscriptionsActiveCount,0) as subscriptionsActiveCount,
-subscriptionsCount,firstSubscriptionDate,lastSubscriptionCancelledAt, m.maxsubscriptionOrderCount
+subscriptionsCount,firstSubscriptionDate,lastSubscriptionCancelledAt, m.maxsubscriptionOrderCount,minOrderIntervalFrequency,maxOrderIntervalFrequency
 from {{ ref('stg_recharge__order') }} o 
 left join {{ ref('recharge_orderMaxDeliveryCount') }} m using(recharge_orderId)
 left join activeCountSummary a using(recharge_orderId) 
 left join countSummary c using(recharge_orderId) 
 left join dateSummary d using(recharge_orderId) 
+left join frequencySummary f using(recharge_orderId) 
