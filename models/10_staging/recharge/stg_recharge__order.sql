@@ -10,6 +10,7 @@ renamed as (
 
     select id as recharge_orderId,
     cast(external_order_id_ecommerce as int) as shopify_orderId,
+    customer_id as recharge_customerId,
     is_deleted as isDeleted,
     created_at as createdAt
     --scheduled_at as scheduledAt,
