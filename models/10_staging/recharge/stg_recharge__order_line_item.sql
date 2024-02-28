@@ -18,7 +18,7 @@ renamed as (
         unit_price_includes_tax,
         index as lineIndex
     from source
-
+    where purchase_item_type = 'subscription'
 )
 
 select * from renamed

@@ -1,4 +1,11 @@
-select rol.*, ro.shopify_orderid, s.createdat as subscriptioncreatedat
+with ranked as 
+(select rol.*, ro.shopify_orderid, ro.createdat as recharge_orderCreatedAt,
+rank() over (
+        partition by subscriptionId order by recharge_orderid
+    ) as subscriptionOrderRank
 from {{ ref("stg_recharge__order_line_item") }} rol
 join {{ ref("stg_recharge__order") }} ro using (recharge_orderid)
-left join {{ ref("inner_recharge__subscription") }} s using (subscriptionId)
+)
+
+select * from ranked 
+--where recharge_orderId = 450653215
