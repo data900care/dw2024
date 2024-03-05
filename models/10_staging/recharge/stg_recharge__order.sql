@@ -13,7 +13,7 @@ renamed as (
     customer_id as recharge_customerId,
     is_deleted as isDeleted,
     created_at as createdAt,
-    total_price as totalPrice
+    round(cast(total_price as numeric),2) as totalPrice
     --scheduled_at as scheduledAt,
     --shipped_date as shippedAt
 
