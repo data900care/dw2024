@@ -5,10 +5,17 @@ group by recharge_orderId
 )
 
 select ro.*,b.orderBasketSize,
-subscriptionsActiveCount,subscriptionsCount,firstSubscriptionDate,lastSubscriptionCancelledAt, maxsubscriptionOrderCount,
-minOrderIntervalFrequency,
-maxOrderIntervalFrequency
-,so.validOrder , so.customerOrderRank as shopify_customerOrderRank, so.orderCustomerType as shopify_orderCustomerType
+
+s.subscriptionsActiveCount,
+s.subscriptionsCount,
+s.firstSubscriptionDate,
+s.lastSubscriptionCancelledAt, 
+s.maxsubscriptionOrderCount,
+s.minOrderIntervalFrequency,
+s.maxOrderIntervalFrequency
+
+,so.validOrder , so.customerOrderRank as shopify_customerOrderRank, so.orderCustomerType as shopify_orderCustomerType,
+c.FirstSubscriptionDate as customerFirstSubscriptionDate
 from {{ ref('inner_recharge_order') }} ro 
     left join basketSize b
         using(recharge_orderId)
@@ -17,3 +24,5 @@ from {{ ref('inner_recharge_order') }} ro
 left join
     {{ ref("shopifyOrderL") }} so
     using(shopify_orderid )
+left join {{ ref('customerM') }} c 
+  on c.recharge_customerId = ro.recharge_customerId

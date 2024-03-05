@@ -5,12 +5,13 @@ with
         group by shopify_customerid
     ),
     latestrechargecustomer as (
-        select shopify_customerid, recharge_customerid, subscriptionsactivecount
+        select shopify_customerid, recharge_customerid as recharge_latestCustomerid, subscriptionsActiveCount as latestSubscriptionsActiveCount
         from {{ ref('stg_recharge__customer') }}
         where recharge_customerid in (select latestid from latestrechargecustomerId)
     )
 
-select sc.*, rc.recharge_customerid, rc.subscriptionsactivecount
+select sc.*, 
+rc.recharge_latestCustomerid , rc.latestSubscriptionsActiveCount 
 from {{ ref("stg_shopify__customer") }} sc
 left join
     latestrechargecustomer rc using (shopify_customerid)
