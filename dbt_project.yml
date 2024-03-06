@@ -44,4 +44,4 @@ models:
     15_inner :
         +materialized: ephemeral 
     3_serve:
-        +materialized: view #table
+        +materialized: view  #table #

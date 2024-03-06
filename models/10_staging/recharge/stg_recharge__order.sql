@@ -12,7 +12,7 @@ renamed as (
     cast(external_order_id_ecommerce as int) as shopify_orderId,
     customer_id as recharge_customerId,
     is_deleted as isDeleted,
-    created_at as createdAt,
+    cast(datetime(created_at, "Europe/Paris") as date) as createdAt,
     round(cast(total_price as numeric),2) as totalPrice
     --scheduled_at as scheduledAt,
     --shipped_date as shippedAt
