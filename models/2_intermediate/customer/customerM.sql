@@ -2,6 +2,7 @@ select
     sc.shopify_customerId,
     sc.recharge_latestCustomerid as recharge_customerid,
     sc.email,
+    sc.createdAt,
     sc.latestSubscriptionsActiveCount as subscriptionsActiveCount,
     ss.firstSubscriptionDate,
     ss.lastSubscriptionCancelledAt
