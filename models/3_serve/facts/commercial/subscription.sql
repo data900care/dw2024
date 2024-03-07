@@ -1,1 +1,1 @@
-select * from {{ ref('subscriptionM') }}
+select * except(idAdresse) from {{ ref('subscriptionM') }}
