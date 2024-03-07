@@ -25,3 +25,4 @@ renamed as (
 )
 
 select * from renamed
+where status in ('active','cancelled') --no One Time subscriptions ?
