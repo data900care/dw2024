@@ -17,6 +17,7 @@ select
     fo.firstorder_shippingCountry,
     fo.firstOrder_utmCampaign,
     fo.firstOrder_utmContent,
+    fo.firstorder_total,
     firstOrder_distinctSkuCountRechargeType,
     firstOrder_totalSubscriptionRechargeType,
     co.cohort

@@ -17,6 +17,7 @@ select
     utmContent as firstorder_utmContent,
     utmCampaign as firstOrder_utmCampaign,
     createdat as firstorder_shopifycreatedat,
+    total as firstorder_total,
     distinctskucountRechargeType as firstorder_distinctSkucountRechargeType,
     totalsubscriptionRechargeType as firstorder_totalsubscriptionRechargeType
 from {{ ref("shopifyOrderM") }}  o
