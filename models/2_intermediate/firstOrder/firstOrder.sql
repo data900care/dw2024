@@ -14,6 +14,8 @@ select
     discountcode as firstorder_discountcode,
     shippingcountry as firstorder_shippingcountry,
     acquisitionchannel as firstorder_acquisitionchannel,
+    utmContent as firstorder_utmContent,
+    utmCampaign as firstOrder_utmCampaign,
     createdat as firstorder_shopifycreatedat,
     distinctskucountRechargeType as firstorder_distinctSkucountRechargeType,
     totalsubscriptionRechargeType as firstorder_totalsubscriptionRechargeType

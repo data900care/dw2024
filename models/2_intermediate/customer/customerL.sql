@@ -15,6 +15,8 @@ select
     fo.firstorder_acquisitionChannel,
     fo.firstorder_discountCode,
     fo.firstorder_shippingCountry,
+    fo.firstOrder_utmCampaign,
+    fo.firstOrder_utmContent,
     firstOrder_distinctSkuCountRechargeType,
     firstOrder_totalSubscriptionRechargeType,
     co.cohort
