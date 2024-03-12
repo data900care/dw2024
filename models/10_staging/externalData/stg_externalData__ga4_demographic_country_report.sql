@@ -9,7 +9,7 @@ source as (
 renamed as (
 
     select
-        date,
+        PARSE_DATE('%Y%m%d', date) as date,
         country,
         totalusers
 
