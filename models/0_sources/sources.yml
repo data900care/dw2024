@@ -17,13 +17,10 @@ sources:
       - name: order_shipping_line
 
       - name: transaction #for Refund amounts
-
-
-      
+  
   - name: recharge
     database: trans-radius-363407
 
-    
     loaded_at_field: updated_at
 
     schema: staging_fivetran_recharge
@@ -112,5 +109,3 @@ sources:
     schema: staging_fivetran_drive
     tables:
       - name: yotpo
-
-
