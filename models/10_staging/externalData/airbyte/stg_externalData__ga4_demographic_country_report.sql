@@ -11,8 +11,9 @@ renamed as (
     select
         PARSE_DATE('%Y%m%d', date) as date,
         country,
-        totalusers
-
+        totalusers,
+        conversions
+        
     from source
 
 )
