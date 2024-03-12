@@ -1,1 +1,2 @@
-select * from {{ ref('stg_externalData__ga4_demographic_country_report') }}
+select * from {{ ref('siteSessionbyCountryM') }}
+where countryName is not null

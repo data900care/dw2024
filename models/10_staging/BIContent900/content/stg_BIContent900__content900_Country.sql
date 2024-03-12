@@ -13,7 +13,8 @@ renamed as (
         name as countryName,
         `group` as countryGroup,
         `order` as countryOrder,
-        campaign_location as campaignLocation
+        campaign_location as campaignLocation,
+        GoogleAnalyticsName as googleAnalyticsName
 
     from source
 
