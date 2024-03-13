@@ -25,4 +25,5 @@ renamed as (
 )
 
 select * from renamed
-where status in ('active','cancelled') --no One Time subscriptions ?
+where status in ('active','cancelled') and _fivetran_deleted = False 
+--no One Time subscriptions ?
