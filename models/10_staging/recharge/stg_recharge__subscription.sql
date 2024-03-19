@@ -21,9 +21,9 @@ renamed as (
         sku,
         status
     from source
-
+    where _fivetran_deleted = False
 )
 
 select * from renamed
-where status in ('active','cancelled') and _fivetran_deleted = False 
+where status in ('active','cancelled') --and _fivetran_deleted = False 
 --no One Time subscriptions ?

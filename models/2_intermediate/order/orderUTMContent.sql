@@ -5,7 +5,7 @@ with
 source as (
 
     select * from {{ ref('stg_shopify__order_note_attribute') }}
-    where name = 'utm_content' 
+    where name in ('utm_content' ,'utmContent' )
 ),
 
 
