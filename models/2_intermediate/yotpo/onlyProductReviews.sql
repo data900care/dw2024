@@ -1,11 +1,11 @@
 with
 onlyProductReviews as (
     select createdAt,
-    shopify_orderId,
+    countryName,
     sku,
     productTitle,
     score
-    from {{ ref('stg_externalData__yotpo') }}
+    from {{ ref('reviewsM') }}
     where type = 'product_review'
 )
 

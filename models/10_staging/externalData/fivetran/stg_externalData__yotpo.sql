@@ -7,11 +7,12 @@ with
         select
             cast(review_creation_date as date) as createdAt,
             order_date as orderdate,
-            order_id as shopify_orderId,
+            order_id as shopify_orderNumber,
             product_sku as sku,
             product_title as productTitle,
             review_type as type,
             review_score as score,
+            reviewer_country as reviewerCountry,
             case
                 when
                     contains_substr(

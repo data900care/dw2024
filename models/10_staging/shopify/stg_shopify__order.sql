@@ -20,8 +20,8 @@ renamed as (
         currency,
         customer_id as shopify_customerId,
         name as orderName,
-        number,
-        order_number,
+        
+        order_number as shopify_orderNumber,
         shipping_address_country as shippingCountry,
 
         test,

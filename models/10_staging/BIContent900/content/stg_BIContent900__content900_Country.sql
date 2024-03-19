@@ -14,7 +14,9 @@ renamed as (
         `group` as countryGroup,
         `order` as countryOrder,
         campaign_location as campaignLocation,
-        GoogleAnalyticsName as googleAnalyticsName
+        GoogleAnalyticsName as googleAnalyticsName,
+        yotpoReviewerCountryCode,
+        RetentlyCountry
 
     from source
 

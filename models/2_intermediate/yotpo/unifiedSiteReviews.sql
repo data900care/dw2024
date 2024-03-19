@@ -1,17 +1,17 @@
 with
 avis900Reviews as (
     select createdAt,
-    shopify_orderId,
+    countryName,
     avis900 as score
-    from {{ ref('stg_externalData__yotpo') }}
+    from {{ ref('reviewsM') }}
     where type = 'product_review'
     and avis900 > 0
 ),
 siteReviews as (
     select createdAt,
-    shopify_orderId,
+    countryName,
     score*2 as score
-    from {{ ref('stg_externalData__yotpo') }}
+    from {{ ref('reviewsM') }}
     where type = 'site_review'
 )
 
