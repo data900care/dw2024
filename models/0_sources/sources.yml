@@ -34,7 +34,7 @@ sources:
                 - unique
                 - not_null
             - name: external_customer_id_ecommerce
-              description:  key of the shopify customer table, sometimes Null Values, sometimes multiples Recharge customer ñaping to same shopify customer and sometimes recharge customer mapping to a non existing Shopify Customer.
+              description:  key of the shopify customer table, sometimes Null Values, sometimes multiples Recharge customer mapping to same shopify customer and sometimes recharge customer mapping to a non existing Shopify Customer.
       - name: subscription
       - name : order_line_item
       - name : address
@@ -50,7 +50,12 @@ sources:
     schema: staging_airbyte_cloud
     tables:
       - name: airtable_airupsell___basefullupsells_tblRQj1DtQsrDcWef  
-
+        columns:
+              - name: upsell_subscription_id_recharge
+                description: id of the gift Subscription in Upsell
+                tests:
+                  - not_null
+                  - unique
     
   - name: BIContent900
     database: trans-radius-363407
@@ -78,7 +83,12 @@ sources:
       - name : content900_Acquisition_Channel
       - name : content900_tests_customer_cohort_groups
       - name : content900_Country
-
+        columns:
+              - name: Name
+                description: Primary key of Countries
+                tests:         
+                  - unique         
+                  - not_null
 
 
 
@@ -86,10 +96,10 @@ sources:
   - name: externalDataAirbyte
     database: trans-radius-363407
 
-    # freshness: # default freshness
-    #   warn_after: {count: 240, period: hour}
-    #   error_after: {count: 480, period: hour}
-    # loaded_at_field: _airbyte_extracted_at
+    freshness: # default freshness
+       warn_after: {count: 240, period: hour}
+       error_after: {count: 480, period: hour}
+    loaded_at_field: _airbyte_extracted_at
 
     schema: staging_airbyte_cloud
     tables:
@@ -114,10 +124,10 @@ sources:
   - name: retently
     database: trans-radius-363407
 
-    # freshness: # default freshness
-    #   warn_after: {count: 72, period: hour}
-    #   error_after: {count: 120, period: hour}
-    # loaded_at_field: _airbyte_extracted_at
+    freshness: # default freshness
+       warn_after: {count: 24, period: hour}
+       error_after: {count: 120, period: hour}
+    loaded_at_field: _airbyte_extracted_at
 
     schema: staging_airbyte_cloud
     tables:
