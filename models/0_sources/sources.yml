@@ -122,3 +122,9 @@ sources:
     schema: staging_airbyte_cloud
     tables:
       - name: retently_feedback 
+
+  - name: reviewsio 
+    database: trans-radius-363407
+    schema: staging_fivetran_reviewsio
+    tables:
+      - name: review_and_question 
