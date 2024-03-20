@@ -1,5 +1,5 @@
 select 
-        countryCode,
+--        countryCode,
         countryName,
         countryGroup,
         countryOrder,

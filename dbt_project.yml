@@ -43,5 +43,7 @@ models:
         +materialized: ephemeral 
     15_inner :
         +materialized: ephemeral 
+    2_intermediate :
+        +materialized: view 
     3_serve:
         +materialized: view  #table #
