@@ -7,6 +7,6 @@ join
     on regexp_contains(lower(s.answer), lower(g.howheard))
 group by o.shopify_orderId
 
---quand nos règles match plusieurs Acquisition channel :
+--quand nos règles match plusieurs Acquisition channel : ou il y a plusieurs lignes dans Grapevine pour meme Order ID
 --Si on peut prendre la première réponse donnée c'est bien, sinon au hasard no pbm . Camille
 --11/01/2024

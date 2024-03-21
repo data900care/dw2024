@@ -9,10 +9,10 @@ source as (
 renamed as (
 
     select
-        cast(weekno as int) as weekNo,
+        --cast(weekno as int) as weekNo,
         PARSE_DATE('%d/%m/%Y',  weekstart) as weekStart,
-        PARSE_DATE('%d/%m/%Y',  weekend) as weekEnd,
-        weekyear as weekYear,
+        --PARSE_DATE('%d/%m/%Y',  weekend) as weekEnd,
+        --weekyear as weekYear,
       
         cast(cumsubscriptions as int) as cumulativeSubscriptions,
         cast(netsubscriptions as int) as netSubscriptions,

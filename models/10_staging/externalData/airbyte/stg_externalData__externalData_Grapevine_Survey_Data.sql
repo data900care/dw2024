@@ -8,9 +8,9 @@ source as (
 
 renamed as (
 
-        select
+        select 
         cast(order_id as int) as shopify_orderId,
-        cast(left(created_at,10) as date) as createdAt,
+        cast(left(created_at,10) as date) as createdAt, --just for data refreshness stats
         answer 
 
     from source
