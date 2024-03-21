@@ -24,4 +24,4 @@ renamed as (
 )
 
 select * from renamed
-where weekno is  not null
+where weekstart is  not null

@@ -2,4 +2,4 @@ select 'grapevine' as dateSource,max(createdAt) as lastUpdate from {{ ref('stg_e
 union all
 select 'subscription' as dateSource, max(createdAt) as lastUpdate from {{ ref('stg_recharge__subscription') }} 
 union all
-select 'OKR' as dateSource, max(weekEnd) as lastUpdate from {{ ref('stg_externalData__recharge_okr_CumSubscriptionsWeekly') }} 
+select 'OKR' as dateSource, max(weekstart+6) as lastUpdate from {{ ref('stg_externalData__recharge_okr_CumSubscriptionsWeekly') }} 
