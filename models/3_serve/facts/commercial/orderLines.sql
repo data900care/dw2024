@@ -1,8 +1,3 @@
-select shopify_orderId,     
-        price,
+select *
         
-        quantity,
-        sku,
-        totalDiscount
-        
-from {{ ref('inner_shopify__order_line') }}
+from {{ ref('orderLinesM') }}

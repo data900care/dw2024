@@ -12,7 +12,7 @@ renamed as (
       
         category,
         cast(display_order as int) as display_order,
-        impact_on_recurring_order_basket_size
+        cast(replace(impact_on_recurring_order_basket_size,',','.') as numeric) as impact_on_recurring_order_basket_size
 
     from source
 
