@@ -1,1 +1,1 @@
-select * except (email) from {{ ref('customerL') }}
+select * except (email) from {{ ref('customerM') }}
