@@ -4,9 +4,7 @@ source as (
 
     select * from {{ source('recharge', 'subscription') }}
 
-),
-
-renamed as (
+)
 
     select
         id as subscriptionId,
@@ -21,9 +19,5 @@ renamed as (
         sku,
         status
     from source
-    where _fivetran_deleted = False
-)
-
-select * from renamed
-where status in ('active','cancelled') 
---no One Time subscriptions ?
+    where _fivetran_deleted = false
+    and status in ('active','cancelled') 

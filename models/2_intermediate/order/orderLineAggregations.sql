@@ -1,12 +1,9 @@
-with aggregations as 
-(select
+select
     shopify_orderid,
-    count(*) as itemCount,
-    sum(price) as totalItemPrice,
-    sum(quantity) as totalItemQuantity,
-    count(distinct sku) as distinctSkuCount
+    count(*) as itemcount,
+    round(sum(price),2) as totalitemprice,
+    sum(quantity) as totalitemquantity,
+    count(distinct sku) as distinctskucount
 from {{ ref("stg_shopify__order_line") }}
 
-group by  shopify_orderId)
-
-select * from aggregations
+group by shopify_orderid

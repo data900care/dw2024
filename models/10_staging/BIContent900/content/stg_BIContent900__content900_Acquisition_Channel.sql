@@ -4,9 +4,7 @@ source as (
 
     select * from {{ source('BIContent900', 'content900_Acquisition_Channel') }}
 
-),
-
-renamed as (
+)
 
     select
         acquisition_channel as acquisitionChannel,
@@ -14,6 +12,4 @@ renamed as (
 
     from source
 
-)
 
-select * from renamed

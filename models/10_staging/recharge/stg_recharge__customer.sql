@@ -4,9 +4,7 @@ source as (
 
     select * from {{ source('recharge', 'customer') }}
 
-),
-
-renamed as (
+)
 
     select id as recharge_customerId,
         subscriptions_active_count as subscriptionsActiveCount ,
@@ -14,6 +12,3 @@ renamed as (
 
     from source
 
-)
-
-select * from renamed

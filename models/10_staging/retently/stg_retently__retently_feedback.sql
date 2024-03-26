@@ -4,9 +4,7 @@ source as (
 
     select * from {{ source('retently', 'retently_feedback') }}
 
-),
-
-renamed as (
+)
 
     select   
         cast (score as int) as score,  
@@ -16,6 +14,4 @@ renamed as (
         JSON_EXTRACT_SCALAR(feedbackTagsNew, '$[1]') as customerStatus
     from source
 
-)
 
-select * from renamed

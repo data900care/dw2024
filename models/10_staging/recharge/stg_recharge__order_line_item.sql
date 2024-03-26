@@ -4,9 +4,7 @@ source as (
 
     select * from {{ source('recharge', 'order_line_item') }}
 
-),
-
-renamed as (
+)
 
     select
         order_id as recharge_orderId,
@@ -19,6 +17,4 @@ renamed as (
         index as lineIndex
     from source
     where purchase_item_type = 'subscription'
-)
 
-select * from renamed

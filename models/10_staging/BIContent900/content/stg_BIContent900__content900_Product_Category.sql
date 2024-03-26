@@ -4,9 +4,9 @@ source as (
 
     select * from {{ source('BIContent900', 'content900_Product_Category') }}
 
-),
+)
 
-renamed as (
+
 
     select
       
@@ -16,6 +16,4 @@ renamed as (
 
     from source
 
-)
 
-select * from renamed

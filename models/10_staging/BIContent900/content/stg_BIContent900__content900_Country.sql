@@ -4,9 +4,7 @@ source as (
 
     select * from {{ source('BIContent900', 'content900_Country') }}
 
-),
-
-renamed as (
+)
 
     select
         /*900 Definitions*/
@@ -23,6 +21,4 @@ renamed as (
 
     from source
 
-)
 
-select * from renamed

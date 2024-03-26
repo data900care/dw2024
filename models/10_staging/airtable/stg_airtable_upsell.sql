@@ -4,9 +4,7 @@ source as (
 
     select * from {{ source('airtable', 'airtable_airupsell___basefullupsells_tblRQj1DtQsrDcWef') }}
 
-),
-
-renamed as (
+)
 
     select
     
@@ -20,6 +18,4 @@ renamed as (
 
     from source
 
-)
 
-select * from renamed

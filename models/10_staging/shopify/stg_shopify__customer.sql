@@ -4,9 +4,7 @@ source as (
 
     select * from {{ source('shopify', 'customer') }}
 
-),
-
-renamed as (
+)
 
     select id as shopify_customerId,
     email,
@@ -14,6 +12,4 @@ renamed as (
 
     from source
 
-)
 
-select * from renamed

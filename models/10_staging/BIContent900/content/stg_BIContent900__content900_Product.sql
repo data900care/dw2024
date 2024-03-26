@@ -4,9 +4,7 @@ source as (
 
     select * from {{ source('BIContent900', 'content900_Product_Variant') }}
 
-),
-
-renamed as (
+)
 
     select
  
@@ -25,7 +23,5 @@ renamed as (
         color_and_perfume 
     from source
 
-)
 
-select * from renamed
 

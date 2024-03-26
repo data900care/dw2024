@@ -4,9 +4,7 @@ source as (
 
     select * from {{ source('recharge', 'address') }}
 
-),
-
-renamed as (
+)
 
     select
         id,
@@ -17,6 +15,3 @@ renamed as (
 
     from source
 
-)
-
-select * from renamed

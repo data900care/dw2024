@@ -1,8 +1,8 @@
 with
 
-    source as (select * from {{ source("externalDataFivetran", "yotpo") }}),
+    source as (select * from {{ source("externalDataFivetran", "yotpo") }})
 
-    renamed as (
+
 
         select
             cast(review_creation_date as date) as createdAt,
@@ -29,7 +29,4 @@ with
             end as avis900
         from source
 
-    )
 
-select *
-from renamed

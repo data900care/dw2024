@@ -4,9 +4,7 @@ source as (
 
     select * from {{ source('BIContent900', 'content900_mapping_orderDiscountCode_acquisitionChannel') }}
 
-),
-
-renamed as (
+)
 
     select
         code as discountCode,
@@ -14,6 +12,4 @@ renamed as (
 
     from source
 
-)
 
-select * from renamed

@@ -4,9 +4,7 @@ source as (
 
     select * from {{ source('externalDataAirbyte', 'sparkDo__900CARE__PLATFORM_DAILY_SPEND') }}
 
-),
-
-renamed as (
+)
 
     select
         campaign_channel as campaignChannel,
@@ -16,6 +14,3 @@ renamed as (
 
     from source
 
-)
-
-select * from renamed

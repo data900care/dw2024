@@ -4,9 +4,7 @@ source as (
 
     select * from {{ source('shopify', 'order_line') }}
 
-),
-
-renamed as (
+)
 
     select
         order_id as shopify_orderId,     
@@ -16,6 +14,4 @@ renamed as (
         total_discount as totalDiscount,
         index as lineIndex
     from source
-)
 
-select * from renamed

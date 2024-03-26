@@ -4,16 +4,6 @@ source as (
 
     select * from {{ source('BIContent900', 'content900_tests_customer_cohort_groups') }}
 
-),
-
-renamed as (
-
-    select
-        email,
-        cohort
-
-    from source
-
 )
 ,
 duplicates as (
@@ -24,5 +14,5 @@ duplicates as (
     having count(distinct cohort) > 1
 
 )
-select distinct  email, cohort from renamed
+select distinct  email, cohort from source
 where email not in (select email from duplicates)

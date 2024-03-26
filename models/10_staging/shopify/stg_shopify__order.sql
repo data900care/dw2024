@@ -4,10 +4,7 @@ source as (
 
     select * from {{ source('shopify', 'order') }}
 
-),
-
-
-renamed as (
+)
 
     select
         id as shopify_orderId,
@@ -35,6 +32,3 @@ renamed as (
     from source s
 
 
-)
-
-select * from renamed

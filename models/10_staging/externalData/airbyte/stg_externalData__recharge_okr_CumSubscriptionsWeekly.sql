@@ -4,9 +4,7 @@ source as (
 
     select * from {{ source('externalDataAirbyte', 'recharge_okr_CumSubscriptionsWeekly') }}
 
-),
-
-renamed as (
+)
 
     select
         --cast(weekno as int) as weekNo,
@@ -20,8 +18,6 @@ renamed as (
         cast(churnedSubscriptions as int) as churnedSubscriptions
 
     from source
+    where weekstart is  not null
 
-)
 
-select * from renamed
-where weekstart is  not null

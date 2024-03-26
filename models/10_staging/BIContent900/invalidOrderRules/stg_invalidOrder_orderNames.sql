@@ -4,9 +4,7 @@ source as (
 
     select * from {{ source('BIContent900', 'content900_invalidOrder_orderNames') }}
 
-),
-
-renamed as (
+)
 
     select 
     
@@ -14,6 +12,3 @@ renamed as (
 
     from source
 
-)
-
-select * from renamed
