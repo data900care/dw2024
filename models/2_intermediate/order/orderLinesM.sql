@@ -19,9 +19,15 @@ select shopify_orderId,
         quantity,
         sku,
         totalDiscount,
+        
         case orderCustomerType
-            when 'recurring'
-                then basketSum * impact_on_recurring_order_basket_size
+            when 'Recurring'
+                then 
+                    case when basketSum * impact_on_recurring_order_basket_size <1 
+                    then 1
+                    else
+                    basketSum * impact_on_recurring_order_basket_size
+                    end
             else
                basketSum
         end as basketSum
