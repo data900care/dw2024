@@ -20,7 +20,8 @@ source as (
         cast(weight_of_plastic as int) as  weightPlastic,
         cast(__products_per_basket as int) as productsPerBasket,
         
-        color_and_perfume 
+        color_and_perfume ,
+        cast(heroSKU  as boolean) as heroSKU
     from source
 
 
