@@ -24,7 +24,8 @@ clean-targets:         # directories to be removed by `dbt clean`
   - "target"
   - "dbt_packages"
 
-
+tests:
+  +severity: warn
 # Configuring models
 # Full documentation: https://docs.getdbt.com/docs/configuring-models
 
@@ -37,7 +38,16 @@ clean-targets:         # directories to be removed by `dbt clean`
 
 models:
   modern_data_stack :
-    1_staging :
-        +materialized: ephemeral 
+    10_staging :
+        +materialized: ephemeral   
+    11_init :
+        +materialized: view 
+        +schema: temp 
+    15_inner :
+        +materialized: view 
+        +schema: temp 
+    2_intermediate :
+        +materialized: view 
+        +schema: temp 
     3_serve:
-        +materialized: table
+        +materialized: view  #table #

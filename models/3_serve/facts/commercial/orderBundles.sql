@@ -1,0 +1,1 @@
+select * from {{ ref('orderBundles_from_order_note_attribute') }}
