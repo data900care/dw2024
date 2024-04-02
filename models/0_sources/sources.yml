@@ -70,7 +70,7 @@ sources:
 
     schema: staging_airbyte_cloud
     tables:
-       - name : content900_Acquisition_Channel 
+      - name : content900_Acquisition_Channel 
         columns:
               - name: acquisition_channel
                 description: Primary key 
