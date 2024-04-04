@@ -1,1 +1,1 @@
-select * from {{ ref('shopifyOrderL') }}
+select * from {{ ref('shopifyOrderXL') }}
