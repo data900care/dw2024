@@ -98,7 +98,8 @@ sources:
               - name: Category
                 tests:
                   - relationships:
-                      to: ref('content900_Product_Category')
+                      #to: ref('content900_Product_Category')
+                      to: source('staging_airbyte_cloud', 'content900_Product_Category') 
                       field: category
       - name: content900_invalidOrder_customerIds
         columns:
