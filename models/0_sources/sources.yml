@@ -126,7 +126,8 @@ sources:
               - name: acquisitionChannel
                 tests:         
                   - relationships:
-                      to: ref('content900_Acquisition_Channel')
+                      #to: ref('content900_Acquisition_Channel')
+                      to: source('BIContent900', 'content900_Acquisition_Channel')
                       field: acquisition_channel
       - name: content900_mapping_orderDiscountCode_acquisitionChannel 
         columns:
@@ -138,7 +139,8 @@ sources:
               - name: acquisitionChannel
                 tests:         
                   - relationships:
-                      to: ref('content900_Acquisition_Channel')
+                      #to: ref('content900_Acquisition_Channel')
+                      to: source('BIContent900', 'content900_Acquisition_Channel')
                       field: acquisition_channel
 
       - name : content900_tests_customer_cohort_groups     
