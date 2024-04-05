@@ -39,7 +39,8 @@ tests:
 models:
   modern_data_stack :
     10_staging :
-        +materialized: ephemeral   
+        +materialized: view   
+        +schema: temp 
     11_init :
         +materialized: view 
         +schema: temp 
