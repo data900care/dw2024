@@ -18,7 +18,7 @@ source as (
         cast(quantity_refill as int) as quantityRefill,
         
         cast(weight_of_plastic as int) as  weightPlastic,
-        cast(__products_per_basket as int) as productsPerBasket,
+        cast(basket_size_quantity as int) as basketSizeQuantity,
         
         color_and_perfume ,
         cast(heroSKU  as boolean) as heroSKU

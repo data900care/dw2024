@@ -1,5 +1,5 @@
 select sol.*, 
-p.productsPerBasket , pc.impact_on_recurring_order_basket_size, p.productCategory,productType
+p.basketSizeQuantity , pc.impact_on_recurring_order_basket_size, p.productCategory,productType
 from {{ ref("stg_shopify__order_line") }} sol
 
 left join {{ ref('stg_BIContent900__content900_Product') }} p using(sku)

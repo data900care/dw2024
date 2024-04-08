@@ -5,7 +5,7 @@ with orderLines as
         quantity,
         sku,
         totalDiscount,
-        quantity * productsPerBasket as basketSum,
+        quantity * basketSizeQuantity as basketSum,
         impact_on_recurring_order_basket_size,
         orderCustomerType
         
