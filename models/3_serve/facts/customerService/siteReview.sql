@@ -5,7 +5,7 @@ select
     customerType,
     customerStatus,
     'retently' as source
-    from {{ ref('feedbackM') }}
+    from {{ ref('retentlyFeedbackM') }}
 
 union all
 
@@ -15,4 +15,4 @@ select
     countryName,
     null,null,
     'yotpo' as source
-    from {{ ref('unifiedSiteReviews') }}
+    from {{ ref('yotpoUnifiedSiteReviews') }}
