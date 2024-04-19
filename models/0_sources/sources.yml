@@ -9,8 +9,8 @@ sources:
     tables:
       - name: order
         freshness: # default freshness
-          warn_after: {count: 24, period: hour}
-          error_after: {count: 48, period: hour}
+          warn_after: { count: 24, period: hour }
+          error_after: { count: 48, period: hour }
         loaded_at_field: created_at
       - name: customer
       - name: order_discount_code
@@ -19,7 +19,7 @@ sources:
       - name: order_line
       - name: order_shipping_line
       - name: transaction #for Refund amounts
-  
+
   - name: recharge
     database: trans-radius-363407
 
@@ -29,186 +29,182 @@ sources:
     tables:
       - name: order
         freshness: # default freshness
-          warn_after: {count: 24, period: hour}
-          error_after: {count: 48, period: hour}
+          warn_after: { count: 24, period: hour }
+          error_after: { count: 48, period: hour }
         loaded_at_field: created_at
       - name: customer
         columns:
-            - name: id
-              description: Primary key of the recharge customer table
-              tests:
-                - unique
-                - not_null
-            - name: external_customer_id_ecommerce
-              description:  key of the shopify customer table, sometimes Null Values, sometimes multiples Recharge customer mapping to same shopify customer and sometimes recharge customer mapping to a non existing Shopify Customer.
+          - name: id
+            description: Primary key of the recharge customer table
+            tests:
+              - unique
+              - not_null
+          - name: external_customer_id_ecommerce
+            description: key of the shopify customer table, sometimes Null Values, sometimes multiples Recharge customer mapping to same shopify customer and sometimes recharge customer mapping to a non existing Shopify Customer.
       - name: subscription
-      - name : order_line_item
-      - name : address
+      - name: order_line_item
+      - name: address
 
   - name: airtable
     database: trans-radius-363407
 
     freshness: # default freshness
-      warn_after: {count: 24, period: hour}
-      error_after: {count: 48, period: hour}
+      warn_after: { count: 24, period: hour }
+      error_after: { count: 48, period: hour }
     loaded_at_field: _airbyte_extracted_at
 
     schema: staging_airbyte_cloud
     tables:
-      - name: airtable_airupsell___basefullupsells_tblRQj1DtQsrDcWef  
+      - name: airtable_airupsell___basefullupsells_tblRQj1DtQsrDcWef
         columns:
-              - name: upsell_subscription_id_recharge
-                description: id of the gift Subscription in Upsell
-                tests:
-                  - not_null
-                  - unique
-    
+          - name: upsell_subscription_id_recharge
+            description: id of the gift Subscription in Upsell
+            tests:
+              - not_null
+              - unique
+
   - name: BIContent900
     database: trans-radius-363407
 
-    
-
     schema: staging_airbyte_cloud
     tables:
-      - name : content900_Acquisition_Channel 
+      - name: content900_Acquisition_Channel
         columns:
-              - name: acquisition_channel
-                description: Primary key 
-                tests:         
-                  - unique         
-                  - not_null
-      - name : content900_Product_Category
+          - name: acquisition_channel
+            description: Primary key
+            tests:
+              - unique
+              - not_null
+      - name: content900_Product_Category
         columns:
-              - name: category
-                description: Primary key of the product category
-                tests:         
-                  - unique         
-                  - not_null
-      - name : content900_Product_Variant
+          - name: category
+            description: Primary key of the product category
+            tests:
+              - unique
+              - not_null
+      - name: content900_Product_Variant
         freshness: # default freshness
-          warn_after: {count: 24, period: hour}
-          error_after: {count: 120, period: hour}
+          warn_after: { count: 24, period: hour }
+          error_after: { count: 120, period: hour }
         loaded_at_field: _airbyte_extracted_at
         columns:
-              - name: sku
-                description: Primary key of the product variants
-                tests:         
-                  - unique         
-                  - not_null
-              - name: Category
-                tests:
-                  - relationships:
-                      #to: ref('content900_Product_Category')
-                      to: source('BIContent900', 'content900_Product_Category') 
-                      field: category
+          - name: sku
+            description: Primary key of the product variants
+            tests:
+              - unique
+              - not_null
+          - name: Category
+            tests:
+              - relationships:
+                  #to: ref('content900_Product_Category')
+                  to: source('BIContent900', 'content900_Product_Category')
+                  field: category
       - name: content900_invalidOrder_customerIds
         columns:
-              - name: customerId
-                description: Primary key 
-                tests:         
-                  - unique         
-                  - not_null
+          - name: customerId
+            description: Primary key
+            tests:
+              - unique
+              - not_null
       - name: content900_invalidOrder_orderNames
       - name: content900_invalidOrder_testDiscountCodes
         columns:
-              - name: DiscountCode
-                description: Primary key 
-                tests:         
-                  - unique         
-                  - not_null
+          - name: DiscountCode
+            description: Primary key
+            tests:
+              - unique
+              - not_null
       - name: content900_mapping_Grapevine_acquisitionChannel
         columns:
-              - name: howHeard
-                description: Primary key 
-                tests:         
-                  - unique
-                  - not_null
-              - name: acquisitionChannel
-                tests:         
-                  - relationships:
-                      #to: ref('content900_Acquisition_Channel')
-                      to: source('BIContent900', 'content900_Acquisition_Channel')
-                      field: acquisition_channel
-      - name: content900_mapping_orderDiscountCode_acquisitionChannel 
+          - name: howHeard
+            description: Primary key
+            tests:
+              - unique
+              - not_null
+          - name: acquisitionChannel
+            tests:
+              - relationships:
+                  #to: ref('content900_Acquisition_Channel')
+                  to: source('BIContent900', 'content900_Acquisition_Channel')
+                  field: acquisition_channel
+      - name: content900_mapping_orderDiscountCode_acquisitionChannel
         columns:
-              - name: code
-                description: Primary key 
-                tests:         
-                  - unique         
-                  - not_null
-              - name: acquisitionChannel
-                tests:         
-                  - relationships:
-                      #to: ref('content900_Acquisition_Channel')
-                      to: source('BIContent900', 'content900_Acquisition_Channel')
-                      field: acquisition_channel
+          - name: code
+            description: Primary key
+            tests:
+              - unique
+              - not_null
+          - name: acquisitionChannel
+            tests:
+              - relationships:
+                  #to: ref('content900_Acquisition_Channel')
+                  to: source('BIContent900', 'content900_Acquisition_Channel')
+                  field: acquisition_channel
 
-      - name : content900_tests_customer_cohort_groups     
-      - name : content900_Country
+      - name: content900_tests_customer_cohort_groups
+      - name: content900_Country
         columns:
-              - name: Name
-                description: Primary key of Countries
-                tests:         
-                  - unique         
-                  - not_null
-
+          - name: Name
+            description: Primary key of Countries
+            tests:
+              - unique
+              - not_null
 
   - name: externalDataAirbyte
     database: trans-radius-363407
-
 
     schema: staging_airbyte_cloud
     tables:
       - name: externalData_Grapevine_Survey_Data
         columns:
-              - name: order_id
-                description: One acquisition per order
-                tests:               
-                  - not_null
-      - name: recharge_okr_CumSubscriptionsWeekly 
+          - name: order_id
+            description: One acquisition per order
+            tests:
+              - not_null
+      - name: recharge_okr_CumSubscriptionsWeekly
         columns:
-              - name: weekstart
-                description: Primary key 
-                tests:         
-                  - unique         
-                  - not_null
-      - name: sparkDo__900CARE__PLATFORM_DAILY_SPEND 
+          - name: weekstart
+            description: Primary key
+            tests:
+              - unique
+              - not_null
+      - name: sparkDo__900CARE__PLATFORM_DAILY_SPEND
         freshness: # default freshness
-          warn_after: {count: 24, period: hour}
-          error_after: {count: 48, period: hour}
+          warn_after: { count: 24, period: hour }
+          error_after: { count: 48, period: hour }
         loaded_at_field: _airbyte_extracted_at
-      - name:  ga4_demographic_country_report 
+      - name: ga4_demographic_country_report
         freshness: # default freshness
-          warn_after: {count: 24, period: hour}
-          error_after: {count: 48, period: hour}
+          warn_after: { count: 24, period: hour }
+          error_after: { count: 48, period: hour }
         loaded_at_field: _airbyte_extracted_at
         columns:
-              - name: date || country
-                description: Primary key 
-                tests:         
-                  - unique         
-                  - not_null
+          - name: date || country
+            description: Primary key
+            tests:
+              - unique
+              - not_null
 
   - name: externalDataFivetran
     database: trans-radius-363407
     schema: staging_fivetran_drive
     tables:
       - name: yotpo
-  
+
   - name: retently
     database: trans-radius-363407
 
     freshness: # default freshness
-       warn_after: {count: 24, period: hour}
-       error_after: {count: 48, period: hour}
+      warn_after: { count: 24, period: hour }
+      error_after: { count: 48, period: hour }
     loaded_at_field: _airbyte_extracted_at
 
     schema: staging_airbyte_cloud
     tables:
-      - name: retently_feedback 
+      - name: retently_feedback
 
-  - name: reviewsio 
+  - name: reviewsio
     database: trans-radius-363407
     schema: staging_fivetran_reviewsio
     tables:
-      - name: review_and_question 
+      - name: review_and_question
