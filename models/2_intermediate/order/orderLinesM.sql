@@ -23,7 +23,7 @@ select shopify_orderId,
         case orderCustomerType
             when 'Recurring'
                 then 
-                    case when basketSum * impact_on_recurring_order_basket_size <1 
+                    case when basketSum * impact_on_recurring_order_basket_size < 1 
                     then 1
                     else
                     basketSum * impact_on_recurring_order_basket_size
