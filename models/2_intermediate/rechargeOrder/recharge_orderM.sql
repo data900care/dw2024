@@ -14,7 +14,7 @@ s.maxsubscriptionOrderCount,
 s.minOrderIntervalFrequency,
 s.maxOrderIntervalFrequency
 
-,so.validOrder , so.customerOrderRank as shopify_customerOrderRank, so.orderCustomerType as shopify_orderCustomerType, so.shopify_customerId
+,so.validOrder ,so.invalidLabel, so.customerOrderRank as shopify_customerOrderRank, so.orderCustomerType as shopify_orderCustomerType, so.shopify_customerId
 from {{ ref('inner_recharge_order') }} ro 
     left join basketSize b
         using(recharge_orderId)
