@@ -20,6 +20,17 @@ sources:
       - name: order_shipping_line
       - name: transaction #for Refund amounts
 
+  - name: recharge_airbyte
+    database: trans-radius-363407
+
+    loaded_at_field: updated_at
+
+    schema: staging_airbyte_cloud
+    tables: 
+      - name: recharge_customers
+      - name: recharge_subscriptions
+      - name: recharge_orders
+      - name: recharge_addresses
   - name: recharge
     database: trans-radius-363407
 

@@ -2,7 +2,7 @@ with
 
 source as (
 
-    select * from {{ source('recharge', 'subscription') }}
+    select * from {{ source('recharge_airbyte', 'recharge_subscriptions') }}
 
 )
 
@@ -12,12 +12,11 @@ source as (
         cast(datetime(cancelled_at, "Europe/Paris") as date) as cancelledAt,
         cast(datetime(created_at, "Europe/Paris") as date) as createdAt,
         customer_id as recharge_customerId,
-        next_charge_scheduled_at,
-        order_interval_frequency as orderIntervalFrequency,
+        --next_charge_scheduled_at,
+        cast(order_interval_frequency as int) as orderIntervalFrequency,
         order_interval_unit as orderIntervalUnit,
-        cast(price as numeric) as price,
+        price,
         sku,
         status
     from source
-    where _fivetran_deleted = false
-    and status in ('active','cancelled') 
+    where status  in ('active','cancelled') 
