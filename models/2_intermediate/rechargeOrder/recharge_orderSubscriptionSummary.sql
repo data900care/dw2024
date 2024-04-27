@@ -33,7 +33,7 @@ with
 
 select recharge_orderId, ifnull(subscriptionsActiveCount,0) as subscriptionsActiveCount,
 subscriptionsCount,firstSubscriptionDate,lastSubscriptionCancelledAt, m.maxsubscriptionOrderCount,minOrderIntervalFrequency,maxOrderIntervalFrequency
-from {{ ref('stg_recharge__order') }} o 
+from {{ ref('stg_recharge__order_airbyte') }} o  
 left join {{ ref('recharge_orderMaxDeliveryCount') }} m using(recharge_orderId)
 left join activeCountSummary a using(recharge_orderId) 
 left join countSummary c using(recharge_orderId) 

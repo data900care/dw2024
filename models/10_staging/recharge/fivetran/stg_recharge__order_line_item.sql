@@ -9,6 +9,7 @@ source as (
     select
         order_id as recharge_orderId,
         purchase_item_id as subscriptionId,
+        purchase_item_type,
         quantity,
         sku,
         round(cast(total_price as numeric),2) as totalPrice,

@@ -11,10 +11,11 @@ select
     when 'day' then orderIntervalFrequency
     when 'month' then orderIntervalFrequency * 30
     end as orderIntervalFrequencyDay
-from {{ ref("stg_recharge__subscription") }} s
+from {{ ref("stg_recharge__subscription_airbyte") }} s 
 join
-    {{ ref("stg_recharge__customer") }} c
-    on s.recharge_customerid = c.recharge_customerid
-left join {{ ref("stg_recharge__address") }} a on a.id = s.idadresse
+    {{ ref("stg_recharge__customer_airbyte") }} c 
+    using(recharge_customerid)
+left join {{ ref("stg_recharge__address_airbyte") }} a  
+    on a.id = s.idadresse
 left join {{ ref('stg_BIContent900__content900_Country') }} cy 
     on cy.recharge_countryCode = a.countrycode

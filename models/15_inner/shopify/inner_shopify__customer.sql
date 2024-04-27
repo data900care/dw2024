@@ -1,12 +1,12 @@
 with
     latestrechargecustomerId as (
         select max(recharge_customerid) as latestid
-        from {{ ref("stg_recharge__customer") }}
+        from {{ ref("stg_recharge__customer_airbyte") }} 
         group by shopify_customerid
     ),
     latestrechargecustomer as (
         select shopify_customerid, recharge_customerid as recharge_latestCustomerid, subscriptionsActiveCount as latestSubscriptionsActiveCount
-        from {{ ref('stg_recharge__customer') }}
+        from {{ ref("stg_recharge__customer_airbyte") }} 
         where recharge_customerid in (select latestid from latestrechargecustomerId)
     )
 

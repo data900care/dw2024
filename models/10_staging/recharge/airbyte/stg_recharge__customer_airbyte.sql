@@ -7,7 +7,7 @@ source as (
 )
 
     select id as recharge_customerId,
-        number_active_subscriptions as subscriptionsActiveCount ,
+        subscriptions_active_count as subscriptionsActiveCount ,
         cast(JSON_VALUE(external_customer_id,'$.ecommerce')  as int) as shopify_customerId
 
     from source
