@@ -7,6 +7,7 @@ source as (
 )
 
     select
+        id as review_and_question_id,
         cast(date_created as date) as createdAt, 
         order_id  as orderName,
         rating,

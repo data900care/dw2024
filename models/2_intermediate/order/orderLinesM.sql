@@ -12,8 +12,6 @@ with orderLines as
         basketSizeQuantity,
         sku,
         totalDiscount,
-        --quantity * basketSizeQuantity as basketSum,
-        --recurring_order_quantity_divide,
         orderCustomerType
         
 from {{ ref('inner_shopify__order_line') }}
@@ -27,18 +25,6 @@ select shopify_orderId,
         quantity_adjusted,
         sku,
         totalDiscount,
-        /*
-        case orderCustomerType
-            when 'Recurring'
-                then 
-                    case when basketSum / recurring_order_quantity_divide < 1 
-                    then 1
-                    else
-                    basketSum / recurring_order_quantity_divide
-                    end
-            else
-               basketSum
-        end as basketSum*/
-       
+      
         quantity_adjusted * basketSizeQuantity as basketSum
 from orderLines

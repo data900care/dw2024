@@ -219,3 +219,4 @@ sources:
     schema: staging_fivetran_reviewsio
     tables:
       - name: review_and_question
+      - name: review_attribute

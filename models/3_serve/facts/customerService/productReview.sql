@@ -13,5 +13,5 @@ select createdAt,
     productName,
     rating,
     'reviewsIO' as source
-    from {{ ref('reviewsioM') }}
+    from {{ ref('reviewsioReviewM') }}
 
