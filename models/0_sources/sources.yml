@@ -106,6 +106,10 @@ sources:
             tests:
               - unique
               - not_null
+          - name: quantity_refill
+            description: Number of Refills in the Product Variant 
+            tests:
+              - not_null
           - name: Category
             tests:
               - relationships:
