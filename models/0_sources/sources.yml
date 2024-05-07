@@ -8,7 +8,7 @@ sources:
     schema: staging_fivetran_shopify
     tables:
       - name: order
-        freshness: # default freshness
+        freshness: 
           warn_after: { count: 24, period: hour }
           error_after: { count: 48, period: hour }
         loaded_at_field: created_at
@@ -30,8 +30,13 @@ sources:
       - name: recharge_customers
       - name: recharge_subscriptions
       - name: recharge_orders
+        freshness: 
+          warn_after: { count: 24, period: hour }
+          error_after: { count: 48, period: hour }
+        loaded_at_field: _airbyte_extracted_at
       - name: recharge_addresses
-  - name: recharge
+
+  - name: recharge_fivetran
     database: trans-radius-363407
 
     loaded_at_field: updated_at
@@ -39,10 +44,7 @@ sources:
     schema: staging_fivetran_recharge
     tables:
       - name: order
-        freshness: # default freshness
-          warn_after: { count: 24, period: hour }
-          error_after: { count: 48, period: hour }
-        loaded_at_field: created_at
+
       - name: customer
         columns:
           - name: id
@@ -59,7 +61,7 @@ sources:
   - name: airtable
     database: trans-radius-363407
 
-    freshness: # default freshness
+    freshness: 
       warn_after: { count: 24, period: hour }
       error_after: { count: 48, period: hour }
     loaded_at_field: _airbyte_extracted_at
@@ -94,7 +96,7 @@ sources:
               - unique
               - not_null
       - name: content900_Product_Variant
-        freshness: # default freshness
+        freshness: 
           warn_after: { count: 24, period: hour }
           error_after: { count: 120, period: hour }
         loaded_at_field: _airbyte_extracted_at
@@ -180,12 +182,12 @@ sources:
               - unique
               - not_null
       - name: sparkDo__900CARE__PLATFORM_DAILY_SPEND
-        freshness: # default freshness
+        freshness: 
           warn_after: { count: 24, period: hour }
           error_after: { count: 48, period: hour }
         loaded_at_field: _airbyte_extracted_at
       - name: ga4_demographic_country_report
-        freshness: # default freshness
+        freshness: 
           warn_after: { count: 24, period: hour }
           error_after: { count: 48, period: hour }
         loaded_at_field: _airbyte_extracted_at
@@ -205,7 +207,7 @@ sources:
   - name: retently
     database: trans-radius-363407
 
-    freshness: # default freshness
+    freshness: 
       warn_after: { count: 24, period: hour }
       error_after: { count: 48, period: hour }
     loaded_at_field: _airbyte_extracted_at

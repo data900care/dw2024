@@ -2,7 +2,7 @@ with
 
 source as (
 
-    select * from {{ source('recharge', 'address') }}
+    select * from {{ source('recharge_fivetran', 'address') }}
 
 )
 
