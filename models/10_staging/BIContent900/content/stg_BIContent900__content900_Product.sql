@@ -18,7 +18,7 @@ source as (
         cast(quantity_refill as int) as quantityRefill,
         cast(recurring_order_quantity_divide as int) as recurring_order_quantity_divide,
         
-        cast(weight_of_plastic as int) as  weightPlastic,
+        --cast(weight_of_plastic as int) as  weightPlastic,
         cast(basket_size_quantity as int) as basketSizeQuantity,
         
         color_and_perfume ,
