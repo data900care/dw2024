@@ -38,16 +38,16 @@ tests:
 models:
   modern_data_stack:
     10_staging:
-      +materialized: view
+      +materialized: table #view
       +schema: temp
     11_init:
-      +materialized: view
+      +materialized: table #view
       +schema: temp
     15_inner:
-      +materialized: view
+      +materialized: table #view
       +schema: temp
     2_intermediate:
-      +materialized: view
+      +materialized: table #view
       +schema: temp
     3_serve:
       +materialized: view #table #
