@@ -166,6 +166,13 @@ sources:
             tests:
               - unique
               - not_null
+      - name: content900_Campaign_Location
+        columns:
+          - name: Spark_campaign_location
+            description: Primary key of campaign location
+            tests:
+              - unique
+              - not_null
 
   - name: externalDataAirbyte
     database: trans-radius-363407
