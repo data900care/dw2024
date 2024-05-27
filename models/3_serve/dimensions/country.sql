@@ -1,8 +1,7 @@
 select 
 --        countryCode,
         countryName,
-        countryGroup,
-        countryOrder,
-        campaignLocation
+        region,
+        countryOrder
         
  from {{ ref('stg_BIContent900__content900_Country') }}

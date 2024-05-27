@@ -1,5 +1,5 @@
 select rol.*, s.status,s.createdAt as  subscriptionCreatedAt, s.cancelledAt as subscriptionCancelledAt, s.orderIntervalFrequencyDay,
-p.productsPerBasket * quantity as lineBasketSize ,productsPerBasket
+p.basketSizeQuantity * quantity as lineBasketSize ,basketSizeQuantity
 from {{ ref("inner_recharge__order_line") }} rol
     left join {{ ref('inner_recharge__subscription') }} s 
          using(subscriptionId)

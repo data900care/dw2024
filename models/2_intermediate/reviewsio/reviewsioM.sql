@@ -1,1 +1,0 @@
-select * from {{ ref('stg_reviewsio__review_and_question') }}

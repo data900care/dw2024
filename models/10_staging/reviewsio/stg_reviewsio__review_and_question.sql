@@ -4,22 +4,17 @@ source as (
 
     select * from {{ source('reviewsio', 'review_and_question') }}
 
-),
-
-renamed as (
-
-    select
-        author_location,
-        date_created, 
-        order_id as shopify_orderNo,
-        rating,
-        sku,
-        source,
-        type,
-        type_label
-
-    from source
-
 )
 
-select * from renamed
+    select
+        id as review_and_question_id,
+        cast(date_created as date) as createdAt, 
+        order_id  as orderName,
+        rating,
+        sku,
+        product_name as productName
+
+    from source
+    where type = 'product_review'
+
+
