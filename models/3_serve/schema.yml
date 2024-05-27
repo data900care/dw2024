@@ -1,0 +1,9 @@
+version: 2
+
+models:
+  - name: order
+    columns:
+      - name: shopify_orderId
+        tests:
+          - unique
+          - not_null

@@ -1,8 +1,8 @@
 select o.*, -1 as customerOrderRank, false as validorder,i.invalidLabel
 
 from {{ ref("stg_shopify__order") }} o
-join {{ ref("init_invalidOrCancelledShopifyOrders") }} i using(shopify_orderId)
 
+join {{ ref("init_invalidandUpsellCanceledShopifyOrders") }} i using(shopify_orderId)
 union all
 
 select
@@ -17,5 +17,5 @@ from {{ ref("stg_shopify__order") }} o
 
 where
     o.shopify_orderid
-    not in (select shopify_orderId from {{ ref("init_invalidOrCancelledShopifyOrders") }})
+    not in (select shopify_orderId from {{ ref("init_invalidandUpsellCanceledShopifyOrders") }})
 
