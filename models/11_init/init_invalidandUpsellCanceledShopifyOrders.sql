@@ -84,7 +84,7 @@ all900InvalidatedOrders as
         union all
         select * from invalidDiscountCodeOrdersDistinct),
 
- forUpsellCancelledOrders as 
+cancelledOrdersForUpsell as 
     (select  shopify_orderId ,  max(concat('upsell:' , upsellType)) as invalidLabel 
     from orderstoInvalidate
     join {{ ref('stg_airtable_upsell') }} on  orderName = originalOrderName
@@ -92,18 +92,33 @@ all900InvalidatedOrders as
          and shopify_orderId not in (select shopify_orderId  from all900InvalidatedOrders)
     group by shopify_orderId
     ),
+cancelledOrdersForGrouping as
+(
+    
+            select shopify_orderId, 'MERGER_OLD' as invalidLabel
+            from {{ ref("stg_shopify__order_tag") }}
+            join orderstoInvalidate using (shopify_orderid)
+            where
+                lower(tag) in (
+                    'merger_old'
+                )
+        
+),
 canceledOrderswithoutRefund as 
-    (select shopify_orderId, concat('cancel: ' , cancelReason) as invalidLabel
+    (select shopify_orderId, concat('cancel/norefund: ' , cancelReason) as invalidLabel
     from orderstoInvalidate 
     where cancelled is true 
             and shopify_orderId not in (select shopify_orderId  from {{ ref('inner_shopify_refund_transaction') }})
             and shopify_orderId not in (select shopify_orderId  from all900InvalidatedOrders)
-            and shopify_orderId not in (select shopify_orderId  from forUpsellCancelledOrders)
+            and shopify_orderId not in (select shopify_orderId  from cancelledOrdersForUpsell)
+            and shopify_orderId not in (select shopify_orderId  from cancelledOrdersForGrouping)
     )
 
 select * from all900InvalidatedOrders
 union all
-select * from forUpsellCancelledOrders
+select * from cancelledOrdersForUpsell
+union all
+select * from cancelledOrdersForGrouping
 union all
 select * from canceledOrderswithoutRefund
 
