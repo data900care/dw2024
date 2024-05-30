@@ -75,7 +75,11 @@ sources:
             tests:
               - not_null
               - unique
-
+          - name: upsell_first_order_original_order
+            description: id of the shopify order canceled in Upsell operation to create a new one with the Upsell Gift
+            tests:
+              - not_null
+              - unique
   - name: BIContent900
     database: trans-radius-363407
 

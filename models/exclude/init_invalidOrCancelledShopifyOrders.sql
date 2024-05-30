@@ -9,7 +9,8 @@ otherCancellation as
     (select shopify_orderId , concat('cancel: ' , cancelReason) as invalidLabel 
     from {{ ref("stg_shopify__order") }}
     where cancelled is true 
-    and shopify_orderId not in (select shopify_orderId from upsellCancellation)),
+    and shopify_orderId not in (select shopify_orderId from upsellCancellation)
+    and shopify_orderId not in (select shopify_orderId from {{ ref('inner_shopify_refund_transaction') }})),
 
 fullList as 
 (

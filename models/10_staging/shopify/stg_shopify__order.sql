@@ -27,7 +27,7 @@ source as (
         round(total_discounts,2) as discount,
         round(total_tax) as tax,
         taxes_included as taxesIncluded,
-        round(total_price,1) as total -- = total_line_items_price - total_discounts + total_shipping + total_tax (if taxes_included is false)
+        round(total_price,2) as total -- = total_line_items_price - total_discounts + total_shipping + total_tax (if taxes_included is false)
 
     from source s
 
