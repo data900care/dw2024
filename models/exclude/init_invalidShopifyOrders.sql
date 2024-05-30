@@ -65,8 +65,7 @@ with
         (
             select shopify_orderId, 'No Recharge Order Tags'
             from notcanceledorders so
-            -- left join {{ ref("stg_shopify__order_discount_code") }} d using
-            -- (shopify_orderid)
+
             where
                 not exists (
                     select 1
@@ -75,7 +74,6 @@ with
                         regexp_contains(tag, 'Subscription|OTP')
                         and t.shopify_orderid = so.shopify_orderid
                 )
-        -- and d.discountCode <> '900BASSADEUR'
         )
     )
 select shopify_orderId, min(invalidLabel) as invalidLabel
