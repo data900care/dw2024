@@ -3,9 +3,9 @@ with oct as
         o.*,
         case
             when totalRefund = 0 then 'NoRefund'
-            when totalRefund = total then 'FullRefund'
+            when totalRefund between total and total+0.01 then 'FullRefund'
             when totalRefund < total then 'PartialRefund'
-            when totalRefund > total then 'ExtraRefund'
+            when totalRefund > total+0.01 then 'ExtraRefund'
         end     
         as refundStatus,
         coalesce(c2020.customertype, c2023.customertype) as orderCustomerType

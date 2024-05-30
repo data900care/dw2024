@@ -1,5 +1,4 @@
 select 
---        countryCode,
         countryName,
         region,
         countryOrder

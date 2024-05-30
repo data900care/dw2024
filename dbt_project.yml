@@ -51,3 +51,5 @@ models:
       +schema: temp
     3_serve:
       +materialized: view #table #
+    exclude : 
+      +enabled: false

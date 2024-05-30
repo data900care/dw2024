@@ -11,4 +11,5 @@ select order_id as  shopify_orderId,
         round(amount,2) as amount ,
         kind 
 from source
+where status = 'success'
 
