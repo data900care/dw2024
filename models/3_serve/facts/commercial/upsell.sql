@@ -1,4 +1,5 @@
 select dateUpsell,
         upsellType,
-        contactChannel
+        contactChannel,
+        reduction
 from {{ ref('upsellM') }}
