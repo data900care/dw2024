@@ -1,3 +1,14 @@
+{{ config(
+    materialized="incremental",
+    cluster_by = "event_name",
+    incremental_strategy="insert_overwrite",
+    partition_by={
+      "field": "event_date",
+      "data_type": "date",
+      "granularity": "day",
+      "copy_partitions": true
+    }
+) }}
 
 with tmp_unnest as (
 select
@@ -46,4 +57,11 @@ event_date
 ,traffic_source_source
 
 from tmp_unnest
+ {% if is_incremental() %}
+
+    -- recalculate latest day's data + previous
+    -- NOTE: The _dbt_max_partition variable is used to introspect the destination table
+    where date(event_timestamp) >= date_sub(date(_dbt_max_partition), interval 1 day)
+
+{% endif %}
 --where event_name in ('page_view','first_visit')
