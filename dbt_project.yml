@@ -38,18 +38,21 @@ tests:
 models:
   modern_data_stack:
     10_staging:
-      +materialized: table #view
+      +materialized: table 
       +schema: temp
     11_init:
-      +materialized: table #view
+      +materialized: table
       +schema: temp
     15_inner:
-      +materialized: table #view
+      +materialized: table 
       +schema: temp
     2_intermediate:
-      +materialized: table #view
+      +materialized: table 
       +schema: temp
     3_serve:
-      +materialized: view #table #
+      +materialized: view 
+      facts:
+        ga4:
+          +tags: "ga4"
     exclude : 
       +enabled: false
