@@ -19,6 +19,7 @@ sources:
           error_after: { count: 48, period: hour }
         loaded_at_field: created_at
       - name: customer
+      - name: customer_address
       - name: order_discount_code
       - name: order_tag
       - name: order_note_attribute
