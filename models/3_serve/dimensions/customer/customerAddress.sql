@@ -1,6 +1,8 @@
 select
     sc.shopify_customerId,
-    createdAt,
+    sc.createdAt ,
+    o.createdAt as firstOrderDate,
+    totalSpent,
     sc.recharge_latestCustomerid as recharge_latestCustomerid,
     sc.email,
         address_1,
@@ -11,4 +13,5 @@ select
         zip
 
 from {{ ref("inner_shopify__customer") }} sc
-left join {{ ref('stg_shopify__customer_address') }} a on a.customer_id = shopify_customerId
+join  {{ ref("inner_shopify__order") }} o on o.shopify_customerId = sc.shopify_customerId and  customerorderrank = 1
+left join {{ ref('stg_shopify__customer_address') }} a on a.customer_id = sc.shopify_customerId
