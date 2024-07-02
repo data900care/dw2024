@@ -1,5 +1,6 @@
 select
     sc.shopify_customerId,
+    createdAt,
     sc.recharge_latestCustomerid as recharge_latestCustomerid,
     sc.email,
         address_1,
