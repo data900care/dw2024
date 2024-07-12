@@ -17,6 +17,7 @@ from {{ ref("orderLinesM") }}
 )
 select
     shopify_customerid,
+    shopify_orderid,
     discountcode ,
     shippingcountry ,
     acquisitionchannel ,
