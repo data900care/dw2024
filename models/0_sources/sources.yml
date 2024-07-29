@@ -83,7 +83,7 @@ sources:
         columns:
           - name: upsell_subscription_id_recharge
             description: id of the gift Subscription in Upsell
-            data_tests:
+            data_tests: #updated to data_tests for dbt 1.8
               - not_null
               - unique
 
