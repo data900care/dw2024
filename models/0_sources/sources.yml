@@ -1,5 +1,11 @@
 version: 2
 sources:
+  - name:  ga4_raw
+    database:  trans-radius-363407
+    schema: analytics_309612605
+    tables:
+      - name: full_events
+
   - name: shopify
     database: trans-radius-363407
 
@@ -13,10 +19,15 @@ sources:
           error_after: { count: 48, period: hour }
         loaded_at_field: created_at
       - name: customer
+      - name: customer_address
       - name: order_discount_code
       - name: order_tag
       - name: order_note_attribute
       - name: order_line
+      - name: order_line_refund
+      - name: refund
+      
+      
       - name: order_shipping_line
       - name: transaction #for Refund amounts
 
@@ -49,7 +60,7 @@ sources:
         columns:
           - name: id
             description: Primary key of the recharge customer table
-            tests:
+            data_tests:
               - unique
               - not_null
           - name: external_customer_id_ecommerce
@@ -72,14 +83,10 @@ sources:
         columns:
           - name: upsell_subscription_id_recharge
             description: id of the gift Subscription in Upsell
-            tests:
+            data_tests: #updated to data_tests for dbt 1.8
               - not_null
               - unique
-          - name: upsell_first_order_original_order
-            description: id of the shopify order canceled in Upsell operation to create a new one with the Upsell Gift
-            tests:
-              - not_null
-              - unique
+
   - name: BIContent900
     database: trans-radius-363407
 
@@ -89,14 +96,14 @@ sources:
         columns:
           - name: acquisition_channel
             description: Primary key
-            tests:
+            data_tests:
               - unique
               - not_null
       - name: content900_Product_Category
         columns:
           - name: category
             description: Primary key of the product category
-            tests:
+            data_tests:
               - unique
               - not_null
       - name: content900_Product_Variant
@@ -107,15 +114,15 @@ sources:
         columns:
           - name: sku
             description: Primary key of the product variants
-            tests:
+            data_tests:
               - unique
               - not_null
           - name: quantity_refill
             description: Number of Refills in the Product Variant 
-            tests:
+            data_tests:
               - not_null
           - name: Category
-            tests:
+            data_tests:
               - relationships:
                   #to: ref('content900_Product_Category')
                   to: source('BIContent900', 'content900_Product_Category')
@@ -124,7 +131,7 @@ sources:
         columns:
           - name: customerId
             description: Primary key
-            tests:
+            data_tests:
               - unique
               - not_null
       - name: content900_invalidOrder_orderNames
@@ -132,18 +139,18 @@ sources:
         columns:
           - name: DiscountCode
             description: Primary key
-            tests:
+            data_tests:
               - unique
               - not_null
       - name: content900_mapping_Grapevine_acquisitionChannel
         columns:
           - name: howHeard
             description: Primary key
-            tests:
+            data_tests:
               - unique
               - not_null
           - name: acquisitionChannel
-            tests:
+            data_tests:
               - relationships:
                   #to: ref('content900_Acquisition_Channel')
                   to: source('BIContent900', 'content900_Acquisition_Channel')
@@ -152,11 +159,11 @@ sources:
         columns:
           - name: code
             description: Primary key
-            tests:
+            data_tests:
               - unique
               - not_null
           - name: acquisitionChannel
-            tests:
+            data_tests:
               - relationships:
                   #to: ref('content900_Acquisition_Channel')
                   to: source('BIContent900', 'content900_Acquisition_Channel')
@@ -167,14 +174,14 @@ sources:
         columns:
           - name: Name
             description: Primary key of Countries
-            tests:
+            data_tests:
               - unique
               - not_null
       - name: content900_Campaign_Location
         columns:
           - name: Spark_campaign_location
             description: Primary key of campaign location
-            tests:
+            data_tests:
               - unique
               - not_null
 
@@ -187,13 +194,13 @@ sources:
         columns:
           - name: order_id
             description: One acquisition per order
-            tests:
+            data_tests:
               - not_null
       - name: recharge_okr_CumSubscriptionsWeekly
         columns:
           - name: weekstart
             description: Primary key
-            tests:
+            data_tests:
               - unique
               - not_null
       - name: sparkDo__900CARE__PLATFORM_DAILY_SPEND
@@ -209,7 +216,7 @@ sources:
         columns:
           - name: date || country
             description: Primary key
-            tests:
+            data_tests:
               - unique
               - not_null
 

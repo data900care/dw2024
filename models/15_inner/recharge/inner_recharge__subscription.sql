@@ -7,9 +7,9 @@ select
     a.countrycode,
     cy.countryName,
     case orderIntervalUnit 
-    when 'week' then orderIntervalFrequency * 7
-    when 'day' then orderIntervalFrequency
-    when 'month' then orderIntervalFrequency * 30
+        when 'day' then orderIntervalFrequency
+        when 'week' then orderIntervalFrequency * 7
+        when 'month' then orderIntervalFrequency * 30
     end as orderIntervalFrequencyDay
 from {{ ref("stg_recharge__subscription_airbyte") }} s 
 join

@@ -2,12 +2,13 @@ with
 
 source as (
 
-    select * from {{ source('BIContent900', 'content900_invalidOrder_testDiscountCodes') }}
+    select 
+    matchType, 
+    rtrim(DiscountCode) as DiscountCode, 
+    invalidLabel
+    from {{ source('BIContent900', 'content900_invalidOrder_testDiscountCodes') }}
 
 )
-    select 
-    
-    *
-
+    select  *
     from source
 

@@ -1,5 +1,6 @@
 with orderLines as 
-(select shopify_orderId,     
+(select shopify_orderId,   
+        lineIndex,
         price,
         quantity,
         case orderCustomerType
@@ -19,6 +20,7 @@ join {{ ref('shopifyOrderL') }} using (shopify_orderId)
 )
 
 select shopify_orderId,     
+        lineIndex,
         price,
         
         quantity,
