@@ -3,6 +3,7 @@ select createdAt,
     sku,
     productTitle,
     score,
+    reviewerEmail,
     'yotpo' as source 
     from {{ ref('yotpoReviewsM') }}
     where type = 'product_review'
@@ -12,6 +13,7 @@ select createdAt,
     sku,
     productName,
     rating,
+    reviewerEmail,
     'reviewsIO' as source
     from {{ ref('reviewsioReviewM') }}
 

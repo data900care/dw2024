@@ -4,6 +4,7 @@ select
     countryName,
     customerType,
     customerStatus,
+    reviewerEmail,
     'retently' as source
     from {{ ref('retentlyFeedbackM') }}
 
@@ -14,5 +15,6 @@ select
     score, 
     countryName,
     null,null,
+    reviewerEmail,
     'yotpo' as source
     from {{ ref('yotpoUnifiedSiteReviews') }}

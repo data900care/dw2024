@@ -26,7 +26,8 @@ with
                     ) 
                 then 10
                 else  cast(cf_default_form_votre_avis_sur_900_care as int)
-            end as avis900
+            end as avis900,
+            reviewer_email as reviewerEmail
         from source
 
 

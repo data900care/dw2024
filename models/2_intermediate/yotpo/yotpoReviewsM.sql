@@ -6,7 +6,8 @@ with extendedReviews as (
     c.countryName as reviewerCountryName,
     score,
     r.type,
-    avis900
+    avis900,
+    reviewerEmail
     from {{ ref('stg_externalData__yotpo') }} r
         left join {{ ref('inner_shopify__order') }} o
             using (shopify_orderNumber)
@@ -19,5 +20,6 @@ select createdAt,
     productTitle,
     score,
     avis900,
+    reviewerEmail,
     type
 from extendedReviews

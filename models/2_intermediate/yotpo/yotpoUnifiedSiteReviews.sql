@@ -1,20 +1,26 @@
 with
 avis900Reviews as (
-    select createdAt,
+    select 
+    distinct 
+    createdAt,
     countryName,
-    avis900 as score
+    avis900 as score,
+    reviewerEmail
     from {{ ref('yotpoReviewsM') }}
     where type = 'product_review'
     and avis900 > 0
 ),
 siteReviews as (
-    select createdAt,
+    select 
+    distinct
+    createdAt,
     countryName,
-    score*2 as score
+    score*2 as score,
+    reviewerEmail
     from {{ ref('yotpoReviewsM') }}
     where type = 'site_review'
 )
 
-select * from siteReviews
+select  *  from siteReviews
 union all
 select * from avis900Reviews

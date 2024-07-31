@@ -9,7 +9,7 @@ source as (
     select
         id as review_and_question_id,
         cast(date_created as date) as createdAt, 
-        order_id  as orderName,
+        safe_cast(replace(order_id,'#','') as int)  as shopify_orderNumber,
         rating,
         sku,
         product_name as productName
