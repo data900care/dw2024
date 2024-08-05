@@ -18,7 +18,7 @@ from {{ ref("orderLinesM") }}
 select
     shopify_customerid,
     shopify_orderid,
-    discountcode ,
+    --discountcode ,
     shippingcountry ,
     acquisitionchannel ,
     utmContent ,

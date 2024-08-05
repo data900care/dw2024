@@ -1,6 +1,6 @@
 select
     o.*,
-    d.discountCode,
+   -- d.discountCode,
     oac.acquisitionChannel,
     ifnull(orderwithtrialkit, false) as orderWithTrialKit,
     utmCo.data as utmContent,
@@ -14,7 +14,7 @@ select
 from {{ ref("inner_shopify__order") }} o
 
 left join {{ ref("orderShippingTotals") }} os using (shopify_orderId)
-left join {{ ref("stg_shopify__order_discount_code") }} d using (shopify_orderId)
+--left join {{ ref("stg_shopify__order_discount_code") }} d using (shopify_orderId)
 left join {{ ref("orderAcquisitionChannel") }} oac using (shopify_orderId)
 left join {{ ref("ordersWithTrialKit") }} owt using (shopify_orderId)
 left join {{ ref("orderUTMContent") }} utmCo using (shopify_orderId)
