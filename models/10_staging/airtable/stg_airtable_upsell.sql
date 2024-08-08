@@ -8,7 +8,7 @@ source as (
 
     select
     
-        date_upsell as dateUpsell,
+        cast(date_upsell as date) as dateUpsell,
         upsell_type as upsellType,
         contact_channel as contactChannel,
         upsellid as upsellId,
