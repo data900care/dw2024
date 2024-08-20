@@ -3,6 +3,7 @@ with
 source as (
 
     select * from {{ source('recharge_airbyte', 'recharge_charges') }}
+    where id in (select id from {{ source('recharge_airbyte', 'recharge_charges') }} where status = 'queued')
 
 ),
 
