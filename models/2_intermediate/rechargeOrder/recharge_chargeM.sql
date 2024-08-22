@@ -1,37 +1,48 @@
-with c  as 
-(select id, min(cast(created_at as date)) as createdAt, max(updated_at) as lastUpdatedAt
+with charge_summaryS  as 
+(select id,min(cast(updated_at as date)) as firstTreatedAt, max(updated_at) as lastUpdatedAt
 from {{ ref('stg_recharge__charges') }}
-where created_at > '2024-08-07'
+where  status in ('error', 'success') 
+and updated_at > '2024-08-08'
 group by id),
 
-firstError as
-(select id, min(updated_at) as firstErrorUpdatedAt
-from {{ ref('stg_recharge__charges') }}
-where status = 'error'
-group by id),
 
-rechargeStatus as 
-(select id, updated_at as updated_at, status
-from {{ ref('stg_recharge__charges') }}
+endofFirstDay as 
+(
+select rc.id, max(updated_at) as lastUpdatedAt
+from  charge_summaryS
+join {{ ref('stg_recharge__charges') }} rc
+on rc.id = charge_summaryS.id and  cast(rc.updated_at as date) = charge_summaryS.firstTreatedAt 
+group by id
 ),
 
- ch as 
+
+endofFirstDayCharge as 
 (
-select c.id,createdAt , cast(firstErrorUpdatedAt as date) as errorDate, 
-et.error_type as firstErrorType, 
-ls.status as lastStatus
- from c
+select rc.id, status , rc.updated_at, error_type
+from {{ ref('stg_recharge__charges') }}   rc
+join endofFirstDay
+on rc.id = endofFirstDay.id and rc.updated_at = endofFirstDay.lastUpdatedAt
+),
 
-join rechargeStatus ls
-on ls.id = c.id and ls.updated_at = c.lastUpdatedAt
 
-left join firstError
-on firstError.id = c.id
+ charge_summaryM as 
+(
+select charge_summaryS.id, firstTreatedAt , endofFirstDayCharge.status as endofFirstDayStatus,
+endofFirstDayStatusError.error_type as firstErrorType, 
+cast(charge_summaryS.lastUpdatedAt as date) as lastUpdatedAt , lastCharge.status as lastStatus
+ from charge_summaryS
 
-left join {{ ref('stg_recharge__charges') }} et
-on et.id = c.id and et.updated_at = firstErrorUpdatedAt
+join {{ ref('stg_recharge__charges') }}  lastCharge
+on lastCharge.id = charge_summaryS.id and lastCharge.updated_at = charge_summaryS.lastUpdatedAt
+
+join endofFirstDayCharge 
+on endofFirstDayCharge.id = charge_summaryS.id
+
+left join endofFirstDayCharge endofFirstDayStatusError
+on endofFirstDayStatusError.id = charge_summaryS.id and endofFirstDayStatusError.status = 'error'
+
 )
 
 
-select * from ch 
+select * from charge_summaryM 
 --where errorDate is not null
