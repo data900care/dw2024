@@ -1,5 +1,11 @@
 version: 2
 sources:
+  - name:  snapshot
+    database:  trans-radius-363407
+    schema: dbt_snapshots
+    tables:
+      - name: subscription_snapshot_check
+
   - name:  ga4_raw
     database:  trans-radius-363407
     schema: analytics_309612605

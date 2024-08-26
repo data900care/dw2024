@@ -5,7 +5,8 @@
           target_schema='dbt_snapshots',
           strategy='check',
           unique_key='sku',
-            check_cols=['name', 'Category'],
+          check_cols=['name', 'Category','Type','Quantity_Refill','basket_Size_Quantity'],
+          invalidate_hard_deletes=True
         )
     }}
 
