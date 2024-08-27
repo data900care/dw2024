@@ -1,8 +1,6 @@
 with charge_summaryS  as 
 (select id,min(cast(updated_at as date)) as firstTreatedAt, max(updated_at) as lastUpdatedAt
 from {{ ref('stg_recharge__charges') }}
-where  status in ('error', 'success') 
-and updated_at > '2024-08-08'
 group by id),
 
 

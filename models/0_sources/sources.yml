@@ -52,7 +52,7 @@ sources:
           error_after: { count: 48, period: hour }
         loaded_at_field: _airbyte_extracted_at
       - name: recharge_addresses
-      - name: recharge_charges
+      - name: recharge2_charges
 
   - name: recharge_fivetran
     database: trans-radius-363407

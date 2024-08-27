@@ -2,8 +2,10 @@ with
 
 source as (
 
-    select * from {{ source('recharge_airbyte', 'recharge_charges') }}
-    where id in (select id from {{ source('recharge_airbyte', 'recharge_charges') }} where status = 'queued')
+    select * from {{ source('recharge_airbyte', 'recharge2_charges') }}
+    --where id in (select id from {{ source('recharge_airbyte', 'recharge2_charges') }} where status = 'queued')
+    where  status in ('error', 'success') 
+    and updated_at > '2024-08-08'
 
 ),
 
