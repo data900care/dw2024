@@ -23,7 +23,7 @@ clean-targets: # directories to be removed by `dbt clean`
   - "target"
   - "dbt_packages"
 
-tests : #data_tests: #new dbt 1.8 syntax
+data_tests : #data_tests: #new dbt 1.8 syntax
   +severity: warn
 # Configuring models
 # Full documentation: https://docs.getdbt.com/docs/configuring-models
