@@ -9,15 +9,16 @@ select
     a.totalitemPrice,
     a.totalitemQuantity,
     ifnull(bs.bundleCount,0) as bundleCount,
-    ifnull(totalRefund,0) as totalRefund
+    ifnull(totalRefund,0) as totalRefund,
+    st.shippingTitle 
 
 from {{ ref("inner_shopify__order") }} o
 
 left join {{ ref("orderShippingTotals") }} os using (shopify_orderId)
---left join {{ ref("stg_shopify__order_discount_code") }} d using (shopify_orderId)
 left join {{ ref("orderAcquisitionChannel") }} oac using (shopify_orderId)
 left join {{ ref("ordersWithTrialKit") }} owt using (shopify_orderId)
 left join {{ ref("orderUTMContent") }} utmCo using (shopify_orderId)
 left join {{ ref("orderLineAggregations") }} a using (shopify_orderId)
 left join {{ ref('orderBundleSummary') }} bs using(shopify_orderId)
 left join {{ ref('orderRefundTotal') }} rt using(shopify_orderId)
+left join {{ ref('orderShippingTitle') }} st using(shopify_orderId)

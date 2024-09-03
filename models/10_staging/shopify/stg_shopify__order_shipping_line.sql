@@ -8,7 +8,8 @@ source as (
 
     select
         order_id as shopify_orderId,
-        price
+        price,
+        title
     from source
 
 

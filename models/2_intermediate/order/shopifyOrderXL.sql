@@ -10,3 +10,4 @@ from {{ ref("orderLinesM") }}
 
 select o.*,b.basketSum  from {{ ref('shopifyOrderL') }} o 
 left join basketSums b using (shopify_orderId) 
+
