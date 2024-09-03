@@ -67,7 +67,7 @@ sources:
         columns:
           - name: id
             description: Primary key of the recharge customer table
-            tests:
+            data_tests:
               - unique
               - not_null
           - name: external_customer_id_ecommerce
