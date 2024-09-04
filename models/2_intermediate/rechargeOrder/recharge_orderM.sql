@@ -15,11 +15,12 @@ s.minOrderIntervalFrequency,
 s.maxOrderIntervalFrequency
 
 ,so.validOrder ,so.invalidLabel, so.customerOrderRank as shopify_customerOrderRank, so.orderCustomerType as shopify_orderCustomerType, so.shopify_customerId
+, so.shippingTitle
 from {{ ref('inner_recharge_order') }} ro 
     left join basketSize b
         using(recharge_orderId)
     left join {{ ref('recharge_orderSubscriptionSummary') }} s 
         using(recharge_orderId) 
 left join
-    {{ ref("shopifyOrderL") }} so
+    {{ ref("shopifyOrderXL") }} so
     using(shopify_orderid )
