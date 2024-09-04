@@ -59,22 +59,22 @@ sources:
 
     loaded_at_field: updated_at
 
-    schema: staging_fivetran_recharge
-    tables:
-      - name: order
+    # schema: staging_fivetran_recharge
+    # tables:
+    #   - name: order
 
-      - name: customer
-        columns:
-          - name: id
-            description: Primary key of the recharge customer table
-            data_tests:
-              - unique
-              - not_null
-          - name: external_customer_id_ecommerce
-            description: key of the shopify customer table, sometimes Null Values, sometimes multiples Recharge customer mapping to same shopify customer and sometimes recharge customer mapping to a non existing Shopify Customer.
-      - name: subscription
-      - name: order_line_item
-      - name: address
+    #   - name: customer
+    #     columns:
+    #       - name: id
+    #         description: Primary key of the recharge customer table
+    #         data_tests:
+    #           - unique
+    #           - not_null
+    #       - name: external_customer_id_ecommerce
+    #         description: key of the shopify customer table, sometimes Null Values, sometimes multiples Recharge customer mapping to same shopify customer and sometimes recharge customer mapping to a non existing Shopify Customer.
+    #   - name: subscription
+    #   - name: order_line_item
+    #   - name: address
 
   - name: airtable
     database: trans-radius-363407
@@ -130,8 +130,7 @@ sources:
               - not_null
           - name: Category
             data_tests:
-              - relationships:
-                  #to: ref('content900_Product_Category')
+              - relationships:                  
                   to: source('BIContent900', 'content900_Product_Category')
                   field: category
       - name: content900_invalidOrder_customerIds
@@ -177,6 +176,13 @@ sources:
                   field: acquisition_channel
 
       - name: content900_tests_customer_cohort_groups
+      - name: content900_Region
+        columns:
+          - name: Name
+            description: Primary key of Region
+            data_tests:
+              - unique
+              - not_null
       - name: content900_Country
         columns:
           - name: Name
@@ -184,6 +190,12 @@ sources:
             data_tests:
               - unique
               - not_null
+          - name: Region
+            description: Region of the country (900 defined regions)
+            data_tests:
+              - relationships:                  
+                  to: source('BIContent900', 'content900_Region')
+                  field: name
       - name: content900_Campaign_Location
         columns:
           - name: Spark_campaign_location
@@ -192,6 +204,25 @@ sources:
               - unique
               - not_null
 
+      - name: content900_CostLogistics 
+        columns:
+          - name: region
+            data_tests:
+              - relationships:                  
+                  to: source('BIContent900', 'content900_Region')
+                  field: name
+      - name: content900_CostProduction
+        columns:
+           - name: productCategory
+             data_tests:
+              - relationships:                  
+                  to: source('BIContent900', 'content900_Product_Category')
+                  field: category
+           - name: productType
+             data_tests:
+              - accepted_values:
+                  values: ['Refill','Reusable case']
+      
   - name: externalDataAirbyte
     database: trans-radius-363407
 

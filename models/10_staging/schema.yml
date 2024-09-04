@@ -1,0 +1,9 @@
+version: 2
+
+models:
+  - name: stg_BIContent900__content900_CostLogistics
+    columns:
+      - name: clientType
+        data_tests:
+          - accepted_values:
+              values: ['New','Existing','Recurring']
