@@ -4,6 +4,6 @@ models:
   - name: order
     columns:
       - name: shopify_orderId
-        tests:
+        data_tests:
           - unique
           - not_null
