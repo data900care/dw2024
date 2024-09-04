@@ -11,11 +11,11 @@ renamed as (
     select
      
        
-        year,
-        month,
+        cast(year as int) as year,
+        cast(month as int) as month,
         region,
         split(clienttype,",") as clienttypes,
-        cost
+        cast(replace(cost,',','.') as decimal) as cost
 
     from source
 
