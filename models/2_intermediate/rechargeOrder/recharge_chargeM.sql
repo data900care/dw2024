@@ -27,7 +27,9 @@ on rc.id = endofFirstDay.id and rc.updated_at = endofFirstDay.lastUpdatedAt
 (
 select charge_summaryS.id, firstTreatedAt , endofFirstDayCharge.status as endofFirstDayStatus,
 endofFirstDayStatusError.error_type as firstErrorType, 
-cast(charge_summaryS.lastUpdatedAt as date) as lastUpdatedAt , lastCharge.status as lastStatus
+cast(charge_summaryS.lastUpdatedAt as date) as lastUpdatedAt , 
+lastCharge.status as lastStatus , 
+case when lastCharge.status = 'error' then lastCharge.error_type else null end as  lastErrorType
  from charge_summaryS
 
 join {{ ref('stg_recharge__charges') }}  lastCharge
