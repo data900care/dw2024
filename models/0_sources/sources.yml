@@ -171,7 +171,6 @@ sources:
           - name: acquisitionChannel
             data_tests:
               - relationships:
-                  #to: ref('content900_Acquisition_Channel')
                   to: source('BIContent900', 'content900_Acquisition_Channel')
                   field: acquisition_channel
 
@@ -205,13 +204,13 @@ sources:
               - not_null
 
       - name: content900_CostLogistics 
-        tests:
-        - dbt_utils.unique_combination_of_columns:
-            combination_of_columns:
-              - region
-              - clientType
-              - year
-              - month
+        data_tests:
+          - dbt_utils.unique_combination_of_columns:
+              combination_of_columns:
+                - region
+                - clientType
+                - year
+                - month
         columns:
           - name: region
             data_tests:
