@@ -8,7 +8,7 @@ from {{ ref("orderLinesM") }}
 )
 
 
-select o.*,b.basketSum , cl.cost as costLogistics,  
+select o.*,b.basketSum , cl.cost as costLogistics 
 from {{ ref('shopifyOrderL') }} o 
 left join basketSums b using (shopify_orderId) 
 left join {{ ref('stg_BIContent900__content900_Country') }} c 
