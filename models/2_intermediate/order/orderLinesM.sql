@@ -13,7 +13,10 @@ with orderLines as
         basketSizeQuantity,
         sku,
         totalDiscount,
-        orderCustomerType
+        orderCustomerType,
+        productCategory,
+        productType,
+        createdAt
         
 from {{ ref('inner_shopify__order_line') }}
 join {{ ref('shopifyOrderL') }} using (shopify_orderId)
@@ -28,5 +31,11 @@ select shopify_orderId,
         sku,
         totalDiscount,
       
-        quantity_adjusted * basketSizeQuantity as basketSum
-from orderLines
+        quantity_adjusted * basketSizeQuantity as basketSum,
+        cost as costProduction
+from orderLines ol
+left join {{ ref('costProduction') }} cp
+    on cp.year = extract(year from ol.createdAt) 
+        and cp.month = extract(month from ol.createdAt) 
+        and cp.productCategory = ol.productCategory
+        and cp.productType = ol.productType

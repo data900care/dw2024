@@ -11,11 +11,11 @@ renamed as (
     select
        
        
-        year,
-        month,
+        cast(year as int) as year,
+        cast(month as int) as month,
         productType,
         productCategory,
-        cost
+        cast(replace(cost,',','.') as decimal) as cost
 
     from source
 
