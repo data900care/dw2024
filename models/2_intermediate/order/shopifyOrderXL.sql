@@ -5,10 +5,12 @@ with basketSums as
 from {{ ref("orderLinesM") }} 
     group by shopify_orderId
 
-)
+),
+orders as 
+(
 
-
-select o.*,b.basketSum , cl.cost as costLogistics ,costProduction
+select o.*,b.basketSum , cl.cost as costLogistics ,costProduction, 
+    case when orderCustomerType = 'New' then averageDailyNewClientCost else 0 end as costMarketing
 from {{ ref('shopifyOrderL') }} o 
 
 left join basketSums b using (shopify_orderId) 
@@ -19,5 +21,12 @@ left join {{ ref('costLogistics') }} cl
         and cl.month = extract(month from o.createdAt) 
         and cl.region = c.region
         and cl.clientType = o.orderCustomerType
+left join {{ ref('dailyRegionalAveragecostMarketing') }} cm 
+    on cm.region = o.region  and cm.spendDate = o.createdAt
 
+)
 
+select * from orders 
+--where createdAt > '2024-01-01'
+--and orderCustomerType = 'New'
+-- where costMarketing > 0

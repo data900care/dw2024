@@ -10,7 +10,8 @@ select
     a.totalitemQuantity,
     ifnull(bs.bundleCount,0) as bundleCount,
     ifnull(totalRefund,0) as totalRefund,
-    st.shippingTitle 
+    st.shippingTitle ,
+    c.region
 
 from {{ ref("inner_shopify__order") }} o
 
@@ -22,3 +23,4 @@ left join {{ ref("orderLineAggregations") }} a using (shopify_orderId)
 left join {{ ref('orderBundleSummary') }} bs using(shopify_orderId)
 left join {{ ref('orderRefundTotal') }} rt using(shopify_orderId)
 left join {{ ref('orderShippingTitle') }} st using(shopify_orderId)
+left join {{ ref('stg_BIContent900__content900_Country') }} c  on c.countryName = o.billCountry
