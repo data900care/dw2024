@@ -22,4 +22,4 @@ select c.region , s.spendDate, cost,newCustomerCount, cost/newCustomerCount as a
 left join dailyRegionalSpend s 
     on c.createdAt = s.spendDate
     and c.region = s.region
-order by 5 desc
+
