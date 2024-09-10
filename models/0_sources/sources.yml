@@ -227,7 +227,7 @@ sources:
            - name: productType
              data_tests:
               - accepted_values:
-                  values: ['Refill','Reusable case']
+                  values: ['Recharge','Reusable case']
       
   - name: externalDataAirbyte
     database: trans-radius-363407
