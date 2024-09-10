@@ -27,6 +27,3 @@ left join {{ ref('dailyRegionalAveragecostMarketing') }} cm
 )
 
 select * from orders 
---where createdAt > '2024-01-01'
---and orderCustomerType = 'New'
--- where costMarketing > 0
