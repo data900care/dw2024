@@ -4,7 +4,10 @@ FROM {{ ref('stg_ga4_events') }}
 where user_id is not null and ga_session_id is not null)
 
 SELECT distinct user_id,ga_session_id,device_category,device_mobile_brand_name,geo_country,traffic_source_source
+,manual_source
+,manual_content
+,manual_campaign_name
 FROM {{ ref('stg_ga4_events') }}
 join firstSessionId using(user_id,ga_session_id)
 where user_id is not null and ga_session_id is not null
-order by user_id
+--order by user_id

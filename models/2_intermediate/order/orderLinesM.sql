@@ -33,8 +33,12 @@ select shopify_orderId,
         totalDiscount,
       
         quantity_adjusted * basketSizeQuantity as basketSum,
-        cost * quantityRefill as costProduction
-
+        case ol.productType 
+            when 'Reusable case'
+                then cost
+             when 'Recharge' 
+                then cost * quantityRefill 
+        end as costProduction
         --ol.productCategory,
         --ol.productType
         -- ol.createdAt

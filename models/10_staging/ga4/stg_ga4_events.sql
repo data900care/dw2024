@@ -10,6 +10,9 @@
     }
 ) }}
 
+--if schema change RUN the following
+--dbt run --full-refresh --models stg_ga4_events
+
 with tmp_unnest as (
 select
 parse_date('%Y%m%d', event_date) as event_date
@@ -23,6 +26,7 @@ parse_date('%Y%m%d', event_date) as event_date
 ,(select value.int_value from unnest(event_params) where key = 'ga_session_id') as ga_session_id
 ,(select value.int_value from unnest(event_params) where key = 'ga_session_number') as ga_session_number
 ,(select value.int_value from unnest(event_params) where key = 'batch_page_id') as batch_page_id
+
 ,device.category as device_category
 ,device.mobile_brand_name as device_mobile_brand_name
 ,device.web_info.browser as device_browser
@@ -31,6 +35,11 @@ parse_date('%Y%m%d', event_date) as event_date
 ,traffic_source.name as traffic_source_name
 ,traffic_source.medium as traffic_source_medium
 ,traffic_source.source as traffic_source_source
+
+
+,collected_traffic_source.manual_source
+,collected_traffic_source.manual_content
+,collected_traffic_source.manual_campaign_name
 from {{ source('ga4_raw', 'full_events') }}
 
 )
@@ -56,7 +65,11 @@ event_date
 
 ,traffic_source_source
 
+,manual_source
+,manual_content
+,manual_campaign_name
 from tmp_unnest
+
  {% if is_incremental() %}
 
     -- recalculate latest day's data + previous

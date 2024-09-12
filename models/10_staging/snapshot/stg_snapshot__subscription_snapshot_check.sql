@@ -10,9 +10,9 @@ renamed as (
 
     select
         
-        id,
-        created_at,
-        updated_at,
+        id as subscriptionId,
+        created_at as createdAt,
+        updated_at as updatedAt,
         status,
         dbt_valid_from,
         dbt_valid_to

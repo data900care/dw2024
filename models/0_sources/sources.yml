@@ -59,22 +59,6 @@ sources:
 
     loaded_at_field: updated_at
 
-    # schema: staging_fivetran_recharge
-    # tables:
-    #   - name: order
-
-    #   - name: customer
-    #     columns:
-    #       - name: id
-    #         description: Primary key of the recharge customer table
-    #         data_tests:
-    #           - unique
-    #           - not_null
-    #       - name: external_customer_id_ecommerce
-    #         description: key of the shopify customer table, sometimes Null Values, sometimes multiples Recharge customer mapping to same shopify customer and sometimes recharge customer mapping to a non existing Shopify Customer.
-    #   - name: subscription
-    #   - name: order_line_item
-    #   - name: address
 
   - name: airtable
     database: trans-radius-363407
@@ -182,6 +166,8 @@ sources:
             data_tests:
               - unique
               - not_null
+      - name: content900_mapping_ga4_page_location
+      
       - name: content900_Country
         columns:
           - name: Name
