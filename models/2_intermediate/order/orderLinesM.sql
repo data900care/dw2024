@@ -11,6 +11,7 @@ with orderLines as
                 quantity
         end as quantity_adjusted,
         basketSizeQuantity,
+        quantityRefill,
         sku,
         totalDiscount,
         orderCustomerType,
@@ -32,7 +33,7 @@ select shopify_orderId,
         totalDiscount,
       
         quantity_adjusted * basketSizeQuantity as basketSum,
-        cost as costProduction
+        cost * quantityRefill as costProduction
 
         --ol.productCategory,
         --ol.productType
@@ -43,4 +44,4 @@ left join {{ ref('costProduction') }} cp
         and cp.month = extract(month from ol.createdAt) 
         and cp.productCategory = ol.productCategory
         and cp.productType = ol.productType
---where shopify_orderId = 5709930922321
+--where shopify_orderId = 6179748249937
