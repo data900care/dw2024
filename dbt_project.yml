@@ -43,11 +43,21 @@ models:
     2_intermediate:
       +materialized: table 
       +schema: temp
-    3_serve:
+    3_marts:
       +materialized: view 
-      facts:
-        ga4:
-          +tags: "ga4"
+      googleAnalytics:
+          events:
+            +tags: "ga4events"
+          reports:
+            +tags: "ga4reports"
+      marketing :
+          +tags: "marketing"
+      customerService :
+          +tags: "customerService"
+      sales :
+          +tags: "sales"
+      operations :
+          +tags: "operations"
     exclude : 
       +enabled: false
       
