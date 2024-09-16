@@ -65,9 +65,9 @@ event_date
 
 ,traffic_source_source
 
-,manual_source
-,manual_content
-,manual_campaign_name
+,manual_source 
+,manual_content 
+,manual_campaign_name 
 from tmp_unnest
 
  {% if is_incremental() %}
