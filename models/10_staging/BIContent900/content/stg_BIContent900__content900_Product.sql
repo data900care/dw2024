@@ -22,7 +22,12 @@ source as (
         cast(basket_size_quantity as int) as basketSizeQuantity,
         
         color_and_perfume ,
-        cast(heroSKU  as boolean) as heroSKU
+        cast(heroSKU  as boolean) as heroSKU,
+
+        cast(kit_home as bool) as kit_home,
+        cast(kit_kids as bool) as kit_kids,
+        cast(kit_solid as bool) as kit_solid,
+        cast(kit_essentials as bool) as kit_essentials
     from source
 
 

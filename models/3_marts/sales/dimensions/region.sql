@@ -1,1 +1,0 @@
-select distinct region from {{ ref('stg_BIContent900__content900_Country') }}

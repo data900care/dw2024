@@ -8,7 +8,7 @@ source as (
 
 renamed as (
 
-    select Name
+    select Name as region
 
     from source
 
