@@ -9,7 +9,7 @@ with extendedReviews as (
     avis900,
     reviewerEmail
     from {{ ref('stg_externalData__yotpo') }} r
-        left join {{ ref('inner_shopify__order') }} o
+        left join {{ ref('stg_shopify__order') }} o
             using (shopify_orderNumber)
         left join {{ ref('stg_BIContent900__content900_Country') }} c
             on   c.yotpoReviewerCountryCode = r.reviewerCountry)

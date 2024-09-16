@@ -1,10 +1,11 @@
 select  s.createdAt, 
-        rating,
-        sku,
-        productName ,
-        billCountry as countryName,
-        reviewerEmail
+        s.rating,
+        s.sku,
+        s.productName ,
+        o.shippingCountry as countryName,
+        
+        s.reviewerEmail
         from {{ ref('inner_reviewsio_review') }} s
-      left join {{ ref('inner_shopify__order') }} o
+      left join {{ ref('stg_shopify__order') }} o
             using (shopify_orderNumber)
     
