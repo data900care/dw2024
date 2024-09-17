@@ -6,8 +6,8 @@ source as (
 
 )
     select 
-    cast(customerId as int) as customerId,
-    invalidLabel
+    cast(customer_id as int) as customerId,
+    invalid_label as invalidLabel
 
     from source
 

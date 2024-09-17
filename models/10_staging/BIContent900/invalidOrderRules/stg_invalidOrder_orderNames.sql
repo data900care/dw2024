@@ -8,7 +8,8 @@ source as (
 
     select 
     
-    *
+    order_name as orderName,
+    invalid_label as invalidLabel
 
     from source
 
