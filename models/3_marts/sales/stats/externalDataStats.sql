@@ -1,1 +1,0 @@
-select 'grapevine' as dateSource,max(createdAt) as lastUpdate from {{ ref('stg_externalData__externalData_Grapevine_Survey_Data') }}
