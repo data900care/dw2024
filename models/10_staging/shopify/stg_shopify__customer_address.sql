@@ -9,7 +9,7 @@ source as (
 renamed as (
 
     select
-        customer_id,
+        customer_id as shopify_customerId,
         address_1,
         address_2,
         city,
