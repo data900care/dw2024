@@ -22,7 +22,7 @@ source as (
         shipping_address_country as shippingCountry,
 
         test,
-        fulfillment_status as fulfillmentStatus,
+        fulfillment_status as orderFulfillmentStatus,
         round(total_line_items_price,2) as subTotal,
         round(total_discounts,2) as discount,
         round(total_tax) as tax,

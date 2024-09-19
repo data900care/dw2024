@@ -32,7 +32,7 @@ sources:
       - name: order_line
       - name: order_line_refund
       - name: refund
-      
+      - name: fulfillment
       
       - name: order_shipping_line
       - name: transaction #for Refund amounts

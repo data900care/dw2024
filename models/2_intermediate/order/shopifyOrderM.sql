@@ -1,5 +1,6 @@
 select
     o.*,
+    f.status as fulfillmentStatus,
    -- d.discountCode,
     oac.acquisitionChannel,
     ifnull(orderwithtrialkit, false) as orderWithTrialKit,
@@ -24,3 +25,4 @@ left join {{ ref('orderBundleSummary') }} bs using(shopify_orderId)
 left join {{ ref('orderRefundTotal') }} rt using(shopify_orderId)
 left join {{ ref('orderShippingTitle') }} st using(shopify_orderId)
 left join {{ ref('stg_BIContent900__content900_Country') }} c  on c.countryName = o.billCountry
+left join {{ ref('stg_shopify__fulfillment') }} f using(shopify_orderId)
