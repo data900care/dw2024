@@ -119,7 +119,7 @@ sources:
                   field: category
       - name: content900_invalidOrder_customerIds
         columns:
-          - name: customerId
+          - name: customer_id
             description: Primary key
             data_tests:
               - unique
@@ -127,7 +127,7 @@ sources:
       - name: content900_invalidOrder_orderNames
       - name: content900_invalidOrder_testDiscountCodes
         columns:
-          - name: DiscountCode
+          - name: discount_code
             description: Primary key
             data_tests:
               - unique
