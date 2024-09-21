@@ -17,16 +17,16 @@ renamed as (
 
         status,
 
-        merged_at,
+        --merged_at as mergedAt,
 
-        created_at,
-        error_type,
+        created_at as createdAt,
+        error_type as errorType,
 
-        updated_at,
+        updated_at as updatedAt,
 
-        orders_count,
-        processed_at,
-        scheduled_at
+        --orders_count ,
+        --processed_at,
+        scheduled_at as scheduledAt
 
     from source
 
