@@ -20,13 +20,16 @@ parse_date('%Y%m%d', event_date) as event_date
 ,event_name
 ,user_pseudo_id
 ,user_id
+-- EVENT PARAMS UNNESTED
 ,(select value.string_value from unnest(event_params) where key = 'page_location') as page_location
 ,(select value.string_value from unnest(event_params) where key = 'page_referrer') as page_referrer
 ,(select value.string_value from unnest(event_params) where key = 'link_url') as link_url
 ,(select value.int_value from unnest(event_params) where key = 'ga_session_id') as ga_session_id
 ,(select value.int_value from unnest(event_params) where key = 'ga_session_number') as ga_session_number
 ,(select value.int_value from unnest(event_params) where key = 'batch_page_id') as batch_page_id
-
+-- USER PROPERTIES  UNNESTED
+,(select value.int_value from unnest(user_properties) where key = 'customer_id') as user_properties_customer_id
+,(select value.int_value from unnest(user_properties) where key = 'user_id') as user_properties_user_id
 ,device.category as device_category
 ,device.mobile_brand_name as device_mobile_brand_name
 ,device.web_info.browser as device_browser
@@ -52,6 +55,8 @@ event_date
 ,ga_session_id
 ,user_id 
 ,user_pseudo_id
+,user_properties_customer_id
+,user_properties_user_id
 ,batch_page_id
 
 ,regexp_extract(page_location, r'^[^?]*')  as page_location
@@ -77,4 +82,4 @@ from tmp_unnest
     where date(event_timestamp) >= date_sub(date(_dbt_max_partition), interval 1 day)
 
 {% endif %}
---where event_name in ('page_view','first_visit')
+--where user_properties_user_id <> cast(user_id as int)
