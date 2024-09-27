@@ -6,6 +6,10 @@ event_date
 ,ga_session_id
 ,user_id 
 ,user_pseudo_id
+
+,user_properties_customer_id
+,user_properties_user_id
+
 ,batch_page_id
 
 ,page_location
