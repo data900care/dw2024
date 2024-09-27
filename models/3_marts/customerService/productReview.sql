@@ -4,6 +4,7 @@ select createdAt,
     productTitle,
     score,
     reviewerEmail,
+    shopify_orderId,
     'yotpo' as source 
     from {{ ref('yotpoReviewsM') }}
     where type = 'product_review'
@@ -14,6 +15,7 @@ select createdAt,
     productName,
     rating,
     reviewerEmail,
+    shopify_orderId,
     'reviewsIO' as source
     from {{ ref('reviewsioReviewM') }}
 

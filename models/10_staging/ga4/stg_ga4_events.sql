@@ -18,7 +18,7 @@ select
 parse_date('%Y%m%d', event_date) as event_date
 ,timestamp_micros(event_timestamp)as event_timestamp
 ,event_name
-,user_pseudo_id
+--,user_pseudo_id
 ,user_id
 -- EVENT PARAMS UNNESTED
 ,(select value.string_value from unnest(event_params) where key = 'page_location') as page_location

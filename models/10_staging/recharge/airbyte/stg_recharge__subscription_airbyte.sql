@@ -17,6 +17,7 @@ source as (
         order_interval_unit as orderIntervalUnit,
         price,
         sku,
-        status
+        status,
+        cancellation_reason as cancellationReason
     from source
     where status  in ('active','cancelled') 

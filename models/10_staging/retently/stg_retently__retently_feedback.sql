@@ -13,6 +13,7 @@ source as (
         JSON_EXTRACT_SCALAR(feedbackTagsNew, '$[0]') as customerType,
         JSON_EXTRACT_SCALAR(feedbackTagsNew, '$[1]') as customerStatus,
         email as reviewerEmail
+        
     from source
 
 
