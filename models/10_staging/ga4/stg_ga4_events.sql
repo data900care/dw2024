@@ -29,7 +29,7 @@ parse_date('%Y%m%d', event_date) as event_date
 ,(select value.int_value from unnest(event_params) where key = 'batch_page_id') as batch_page_id
 -- USER PROPERTIES  UNNESTED
 ,(select value.int_value from unnest(user_properties) where key = 'customer_id') as user_properties_customer_id
-,(select value.int_value from unnest(user_properties) where key = 'user_id') as user_properties_user_id
+,(select value.string_value from unnest(user_properties) where key = 'user_id') as user_properties_user_id
 ,device.category as device_category
 ,device.mobile_brand_name as device_mobile_brand_name
 ,device.web_info.browser as device_browser
