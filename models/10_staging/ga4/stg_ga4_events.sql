@@ -70,6 +70,7 @@ event_date
 
 ,traffic_source_source
 
+
 ,manual_source 
 ,manual_content 
 ,manual_campaign_name 
