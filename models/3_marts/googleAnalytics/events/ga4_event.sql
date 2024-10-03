@@ -19,9 +19,9 @@ event_date
 
 ,traffic_source_source
 
-,manual_source as UTM_source
-,manual_content as UTM_content
-,manual_campaign_name as UTM_campaign_name
+,manual_source as utm_source
+,manual_content as utm_content
+,manual_campaign_name as utm_campaign_name
 
 ,m.new_page_location
      from {{ ref('stg_ga4_events') }} s

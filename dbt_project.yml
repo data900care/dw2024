@@ -58,6 +58,8 @@ models:
           +tags: "sales"
       operations :
           +tags: "operations"
+      subscriptions :
+          +tags: "subscriptions"
       dimensions_900care :
           +tags: "dimensions_900"
     exclude : 

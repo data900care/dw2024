@@ -13,30 +13,22 @@ session_first_google_data as
    FROM {{ ref('stg_ga4_events') }}
    where ga_session_id is not null 
         and (device_category is not null or geo_country is not null or traffic_source_source is not null)
-),
-
-
-session_first_manual_data as 
-(select ga_session_id, 
-first_value(manual_source) OVER (PARTITION BY ga_session_id ORDER BY event_timestamp ASC ) as manual_source,
-first_value(manual_source) OVER (PARTITION BY ga_session_id ORDER BY event_timestamp ASC ) as manual_content,
-first_value(manual_campaign_name) OVER (PARTITION BY ga_session_id ORDER BY event_timestamp ASC ) as manual_campaign_name
-FROM {{ ref('stg_ga4_events') }}
-where  ga_session_id is not null and 
-    (manual_source is not null or manual_content is not null or manual_campaign_name is not null)
 )
 
 
-SELECT distinct customer_id,ga_session_id
+
+
+SELECT distinct customer_id
+,ga_session_id
 ,device_category
 ,device_mobile_brand_name
 ,geo_country
 ,traffic_source_source
-,manual_source as UTM_source
-,manual_content as UTM_content
-,manual_campaign_name as UTM_campaign_name
+,utm_Source
+,utm_Content
+,utm_Campaign_Name
 FROM customer_first_sessionId
 left join session_first_google_data using(ga_session_id)
-left join session_first_manual_data using(ga_session_id)
+left join {{ ref('session_first_UTM') }} using(ga_session_id)
 
 --where manual_source is not null
