@@ -15,9 +15,15 @@ session_customer_id as
   select distinct  geo_country,ga_session_id ,customer_id ,user_id,
   from filtered_events where ga_session_id is not null and (customer_id is not null or user_id is not null)
 ),
+
+session_first_geo_country as 
+(select ga_session_id, first_value(geo_country) OVER (PARTITION BY ga_session_id ORDER BY event_timestamp ASC ) as geo_country
+FROM filtered_events
+where ga_session_id is not null and geo_country is not null),
+
  pivoted As 
 (SELECT * FROM (
-  SELECT  filtered_events.geo_country, ga_session_id, event_name,
+  SELECT  ga_session_id, event_name,
          MIN(event_timestamp) OVER (PARTITION BY ga_session_id, event_name) firstTimeStamp
     FROM filtered_events, UNNEST([event_timestamp]) date0
     where   ga_session_id is not null
@@ -27,6 +33,9 @@ FOR event_name IN ('session_start','GA4___product_page_cta','add_to_cart','funne
 )
 
 
-select  s.customer_id,s.user_id, p.*  from pivoted p
+select  s.customer_id,c.geo_country,s.user_id, 
+p.*  
+from pivoted p
 left join session_customer_id s using(ga_session_id)
+left join session_first_geo_country c using(ga_session_id)
 where first_session_start is not null-- and user_id is not null
