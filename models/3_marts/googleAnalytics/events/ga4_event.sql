@@ -6,7 +6,7 @@ event_date
 ,ga_session_id
 
 ,customer_id
-,user_id
+--,user_id
 
 ,page_location
 ,url_parameters

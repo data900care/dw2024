@@ -54,11 +54,9 @@ event_date
 ,event_name
 
 ,ga_session_id
---,user_id 
---,user_pseudo_id
 ,customer_id
 ,user_id
---,batch_page_id
+
 
 ,regexp_extract(page_location, r'^[^?]*')  as page_location
 ,split(page_location, '?')[SAFE_OFFSET(1)] as url_parameters
