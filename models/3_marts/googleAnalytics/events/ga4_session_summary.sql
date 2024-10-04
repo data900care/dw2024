@@ -12,12 +12,12 @@ where event_name in
 ),
 session_customer_id as 
 (
-  select distinct  geo_country,ga_session_id ,customer_id ,user_id,
+  select distinct  ga_session_id ,customer_id ,user_id,
   from filtered_events where ga_session_id is not null and (customer_id is not null or user_id is not null)
 ),
 
 session_first_geo_country as 
-(select ga_session_id, first_value(geo_country) OVER (PARTITION BY ga_session_id ORDER BY event_timestamp ASC ) as geo_country
+(select distinct ga_session_id, first_value(geo_country) OVER (PARTITION BY ga_session_id ORDER BY event_timestamp ASC ) as geo_country
 FROM filtered_events
 where ga_session_id is not null and geo_country is not null),
 

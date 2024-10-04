@@ -5,7 +5,7 @@ where customer_id is not null and ga_session_id is not null)
 ,
 session_first_google_data as 
 (
-   select ga_session_id, 
+   select distinct ga_session_id, 
    first_value(device_category) OVER (PARTITION BY ga_session_id ORDER BY event_timestamp ASC ) as device_category,
    first_value(device_mobile_brand_name) OVER (PARTITION BY ga_session_id ORDER BY event_timestamp ASC ) as device_mobile_brand_name,
    first_value(geo_country) OVER (PARTITION BY ga_session_id ORDER BY event_timestamp ASC ) as geo_country,
