@@ -25,6 +25,7 @@ sources:
           error_after: { count: 48, period: hour }
         loaded_at_field: created_at
       - name: customer
+      - name: customer_tag
       - name: customer_address
       - name: order_discount_code
       - name: order_tag
@@ -133,7 +134,12 @@ sources:
               - unique
               - not_null
       - name: content900_mapping_utm_source_acquisitionChannel
-      
+        columns:
+          - name: utm_source
+            description: Primary key
+            data_tests:
+              - unique
+              - not_null
       - name: content900_mapping_Grapevine_acquisitionChannel
         columns:
           - name: howHeard
