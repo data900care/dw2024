@@ -34,6 +34,10 @@ models:
     10_staging:
       +materialized: table 
       +schema: temp
+      BIContent900:      
+        +tags: "staging_BIContent_900"
+      airtable:
+        +tags: "staging_airtable"
     11_init:
       +materialized: table
       +schema: temp
