@@ -27,6 +27,7 @@ SELECT distinct customer_id
 ,utm_Source
 ,utm_Content
 ,utm_Campaign_Name
+,utm_Medium
 FROM customer_first_sessionId
 left join session_first_google_data using(ga_session_id)
 left join {{ ref('session_first_UTM') }} using(ga_session_id)
