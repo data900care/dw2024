@@ -18,10 +18,13 @@ select
     ss.firstSubscriptionDate,
     ss.lastSubscriptionCancelledAt,
     co.cohort,
-    ga4.UTM_source as firstUtmSource
+    --ga4.UTM_source as firstUtmSource,
+    coalesce(u.acquisitionchannel, ga4.UTM_source) as firstUtmSource
 from {{ ref("inner_shopify__customer") }} sc
 left join {{ ref("customerSubscriptionSummary") }} ss using (shopify_customerid)
 left join {{ ref('firstSession') }} ga4 on ga4.customer_id = sc.shopify_customerid
 left join customerBundleCounts ck using (shopify_customerid)
 left join {{ ref('stg_BIContent900__content900_tests_customer_cohort_groups') }} co using (email)
---where UTM_source is not null
+left join {{ ref('stg_BIContent900__content900_mapping_utm_source_acquisitionChannel') }} u 
+    on u.utm_source = ga4.UTM_source
+--where ga4.UTM_source is not null
