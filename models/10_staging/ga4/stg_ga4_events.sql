@@ -43,6 +43,7 @@ parse_date('%Y%m%d', event_date) as event_date
 
 ,collected_traffic_source.manual_source
 ,collected_traffic_source.manual_content
+,collected_traffic_source.manual_medium
 ,collected_traffic_source.manual_campaign_name
 from {{ source('ga4_raw', 'full_events') }}
 
@@ -71,6 +72,7 @@ event_date
 
 
 ,manual_source 
+,manual_medium
 ,manual_content 
 ,manual_campaign_name 
 from tmp_unnest

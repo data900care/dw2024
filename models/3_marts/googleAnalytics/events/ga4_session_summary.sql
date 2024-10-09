@@ -34,7 +34,7 @@ FOR event_name IN ('session_start','GA4___product_page_cta','add_to_cart','funne
 
 
 select  s.customer_id,c.geo_country,s.user_id, 
-p.*  , u.utm_Source, u.utm_Content, u.utm_Campaign_Name
+p.*  , u.utm_Source, u.utm_Content, u.utm_Campaign_Name, u.utm_Medium
 from pivoted p
 left join session_customer_id s using(ga_session_id)
 left join session_first_geo_country c using(ga_session_id)

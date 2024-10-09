@@ -132,6 +132,8 @@ sources:
             data_tests:
               - unique
               - not_null
+      - name: content900_mapping_utm_source_acquisitionChannel
+      
       - name: content900_mapping_Grapevine_acquisitionChannel
         columns:
           - name: howHeard
