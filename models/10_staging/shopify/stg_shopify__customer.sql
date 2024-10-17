@@ -9,7 +9,8 @@ source as (
     select id as shopify_customerId,
     email,
     cast(datetime(created_at, "Europe/Paris") as date) as createdAt,
-    total_spent as totalSpent
+    total_spent as totalSpent,
+    state
 
     from source
 
