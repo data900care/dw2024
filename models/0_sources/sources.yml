@@ -1,10 +1,17 @@
 version: 2
 sources:
+  - name:  klaviyo
+    database:  trans-radius-363407
+    schema: staging_airbyte_cloud
+    tables:
+      - name: klaviyo_profiles
+      
   - name:  snapshot
     database:  trans-radius-363407
     schema: dbt_snapshots
     tables:
       - name: subscription_snapshot_check
+      - name: customer_snapshot_check
 
   - name:  ga4_raw
     database:  trans-radius-363407

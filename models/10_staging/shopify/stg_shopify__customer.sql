@@ -10,7 +10,7 @@ source as (
     email,
     cast(datetime(created_at, "Europe/Paris") as date) as createdAt,
     total_spent as totalSpent,
-    state
+    upper(state) as state
 
     from source
 
