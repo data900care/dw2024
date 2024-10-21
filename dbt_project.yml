@@ -38,6 +38,8 @@ models:
         +tags: "staging_BIContent_900"
       airtable:
         +tags: "staging_airtable"
+      klaviyo:
+        +tags: "staging_klaviyo"
     11_init:
       +materialized: table
       +schema: temp
@@ -64,6 +66,8 @@ models:
           +tags: "operations"
       dimensions_900care :
           +tags: "dimensions_900"
+      klaviyo : 
+          +tags: "klaviyo"
     exclude : 
       +enabled: false
       
