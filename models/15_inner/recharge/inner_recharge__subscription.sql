@@ -11,7 +11,7 @@ select
         when 'week' then orderIntervalFrequency * 7
         when 'month' then orderIntervalFrequency * 30
     end as orderIntervalFrequencyDay
-from {{ ref("stg_recharge__subscription_airbyte") }} s 
+from {{ ref("init_invalidHardDeleteSubscriptions") }} s 
 join
     {{ ref("stg_recharge__customer_airbyte") }} c 
     using(recharge_customerid)

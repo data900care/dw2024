@@ -5,6 +5,12 @@ sources:
     schema: staging_airbyte_cloud
     tables:
       - name: klaviyo_profiles
+
+  - name:  webhook
+    database:  trans-radius-363407
+    schema: landing_webhooks
+    tables:
+      - name: recharge_subscription_deleted
       
   - name:  snapshot
     database:  trans-radius-363407
