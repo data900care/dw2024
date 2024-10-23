@@ -9,7 +9,7 @@ source as (
 renamed as (
 
     select
-        id,
+        id as shopify_customerId,
         created_at as createdAt,
         updated_at as updatedAt,
         upper(state) as state,
