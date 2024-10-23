@@ -1,0 +1,1 @@
+select * from {{ ref('klaviyo_property_value') }}

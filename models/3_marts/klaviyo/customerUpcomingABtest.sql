@@ -1,1 +1,0 @@
-select * from {{ ref('klaviyo_upcoming_abtest') }}
