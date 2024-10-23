@@ -12,7 +12,7 @@ renamed as (
         id,
         created_at as createdAt,
         updated_at as updatedAt,
-        state,
+        upper(state) as state,
         dbt_valid_from,
         dbt_valid_to
 
@@ -21,4 +21,4 @@ renamed as (
 )
 
 select * from renamed
-where state in ('ENABLED')
+--where state in ('ENABLED')
