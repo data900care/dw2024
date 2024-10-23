@@ -5,10 +5,10 @@ with stateUpdateCatched as
 
 
 SELECT shopify_customerId,
---date_diff(cast(updatedAt as date),firstSubscriptionDate,day) as delay,
+date_diff(cast(updatedAt as date),firstSubscriptionDate,day) as delay,
 createdAt,firstSubscriptionDate,updatedAt
 FROM {{ ref('stg_snapshot__customer_snapshot_check') }}  
 join {{ ref('customerSubscriptionSummary') }} ss  using (shopify_customerId)
 join stateUpdateCatched s using (shopify_customerId)
 where  state = 'ENABLED'
-qualify  RANK() OVER (PARTITION BY id ORDER BY updatedAt) = 1
+qualify  RANK() OVER (PARTITION BY shopify_customerId ORDER BY updatedAt) = 1
