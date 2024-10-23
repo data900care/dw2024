@@ -4,7 +4,7 @@ with stateUpdateCatched as
     having count(distinct state) > 1)
 
 
-SELECT id,date_diff(updatedAt,createdAt,day) as diff
+SELECT id,date_diff(updatedAt,createdAt,day) as enableDelay
 FROM {{ ref('stg_snapshot__customer_snapshot_check') }}
 join stateUpdateCatched using(id)
 where  state = 'ENABLED'
